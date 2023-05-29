@@ -14,25 +14,19 @@ export const getHouseById = createAsyncThunk(
   }
 );
 
-export const createHouse = createAsyncThunk("house/createHouse", async () => {
-  const res = await customAPI.post("house");
-  return res.status(200).json({
-    message: `create house} successfully`,
-  });
+export const createHouse = createAsyncThunk("house/createHouse", async (value) => {
+  const res = await customAPI.post("house",value);
+  return res.data;
 });
 
 export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
   const res = await customAPI.delete(`house/${id}`);
-  return res.status(200).json({
-    message: `delete house id:${id} successfully`,
-  });
+  return id;
 });
 export const EditHouseById = createAsyncThunk(
   "house/EditHouseById",
-  async (id) => {
-    const res = await customAPI.put(`house/${id}`);
-    return res.status(200).json({
-      message: `edit house id:${id} successfully`,
-    });
+  async (arg) => {
+    await customAPI.put(`house/${arg.id}`, arg.value);
+    return arg.value;
   }
 );
