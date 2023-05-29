@@ -1,8 +1,8 @@
-import { navbarOfPage } from "../components/Navbar/navbar";
-export function home() {
+import { Navbar } from "../components/Navbar/navbar";
+export function Home() {
   return (
     <>
-      <navbarOfPage></navbarOfPage>
+      <Navbar></Navbar>
     </>
   );
 }
