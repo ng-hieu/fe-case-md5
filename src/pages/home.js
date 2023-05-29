@@ -1,8 +1,15 @@
-import { navbarOfPage } from "../components/Navbar/navbar";
-export function home() {
+import { Navbar } from "../components/Navbar/navbar";
+import {Footer } from "../components/Footer/footer";
+import{Outlet} from "react-router-dom"
+export default function Home() {
   return (
     <>
-      <navbarOfPage></navbarOfPage>
+    
+      <Navbar></Navbar>
+
+      <Outlet></Outlet>
+
+      <Footer></Footer>
     </>
   );
 }
