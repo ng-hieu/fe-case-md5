@@ -8,7 +8,6 @@ export function Home() {
       <Navbar></Navbar>
       <Header></Header>
       <Outlet></Outlet>
-      <Link to={'/'}>List </Link>
       {/*<Footer></Footer> */}
     </>
   );

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAllHouse } from '../service/houseService'
+import { getAllHouse } from '../../service/houseService'
+
 const initialState = {
     listHouse: []
 }
