@@ -11,7 +11,7 @@
     padding: 10px;
     margin-bottom: 20px;
     border: none;
-    background-color: #1aa3bb;
+    background: transparent;
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
@@ -19,7 +19,7 @@
 
 .inpdddut[type="submit"] {
     padding: 10px 20px;
-    background-color: #22b4c1cc;
+    background: transparent;
     color: #fff;
     border: none;
     border-radius: 5px;
