@@ -44,9 +44,36 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/register.css">
     <link rel="stylesheet" href="/assets/css/form-add.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+  <script>
+    function preview(input) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          if (e.target.result.indexOf('jpeg') != -1 || e.target.result.indexOf('png') != -1 || e.target.result.indexOf('gif') != -1) {
+            $('#img').attr('src', e.target.result);
+            $('svg').css({'display': 'none'});
+          } else {
+            document.getElementById('dialog-default').showModal();
+            $('svg').css({'display': 'block'});
+            $('#img').attr('src', '');
+          }
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#upload").change(function () {
+      $("#img").css({top: 0, left: 0});
+      $('svg').css({'display': 'none'});
+      preview(this);
+      $("#img").draggable({containment: 'parent', scroll: false});
+    });
+  </script>
   </body>
 </html>
