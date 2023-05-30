@@ -1,12 +1,21 @@
-import React from 'react';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./pages/home";
+import { Login } from "./pages/user/login";
+import { Register } from "./pages/user/register";
+import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 
-import Home from './pages/home';
 function App() {
   return (
-  <>
-  <Home></Home>
-
-  </>
+    <>
+      <Routes>
+        <Route path={"login"} element={<Login />}></Route>
+        <Route path={"register"} element={<Register />}></Route>
+        <Route path={"home"} element={<Home />}>
+          <Route path={"create"} element={<AddHouseRenting />}></Route>
+        </Route>
+      </Routes>
+    </>
   );
 }
 

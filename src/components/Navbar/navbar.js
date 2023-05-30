@@ -9,7 +9,7 @@ export function Navbar() {
               <div style={{ height: "100%" }}>
                 <a href="index.html" className="logo">
                   <img
-                    src="assets/images/logo.png"
+                    src="/assets/images/logo.png"
                     alt=""
                     style={{
                       objectFit: "cover",
