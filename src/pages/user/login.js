@@ -1,13 +1,30 @@
 import {Navbar} from "../../components/Navbar/navbar";
-import {Link} from "react-router-dom";
-import { login } from "../../service/userService";
+import {Link, useNavigate} from "react-router-dom";
+import {login} from "../../service/userService";
 import {useDispatch} from "react-redux";
+import {useState} from "react";
+
 export function Login() {
-    const dispatch=useDispatch();
-    const onSubmit= (user)=>{
-        dispatch(login(user));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+    const submit = () => {
+        console.log(username, password)
+        dispatch(login({
+            username: username,
+            password: password
+        })).then((data) => {
+            console.log(data, "data")
+            if (data.payload === "User is not exist") {
+                localStorage.clear();
+                navigate('/login');
+            } else {
+                navigate('/home');
+            }
+        });
     }
-    
+
     return (
         <>
             <Navbar></Navbar>
@@ -22,10 +39,18 @@ export function Login() {
                                             <form className="form-login">
                                                 <span className="title">LogIn</span>
                                                 <div className="flex">
-                                                    <input type="text" className="input-login" placeholder="User Name"/>
-                                                    <input type="password" className="input-login" placeholder="Password"/>
+                                                    <input type="text" className="input-login" placeholder="User Name"
+                                                           value={username} onChange={(e) => {
+                                                        setUsername(e.target.value)
+                                                    }
+                                                    }/>
+                                                    <input type="password" className="input-login"
+                                                           placeholder="Password" value={password} onChange={(e) => {
+                                                        setPassword(e.target.value)
+                                                    }
+                                                    }/>
                                                 </div>
-                                                <button className="submit" onClick={onSubmit}>LogIn</button>
+                                                <button className="submit" type="button" onClick={submit}>LogIn</button>
                                             </form>
                                             <div className="form-section-login">
                                                 <p>Do not have an account? <Link to={'/register'}>Register</Link></p>
