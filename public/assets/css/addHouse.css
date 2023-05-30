@@ -1,22 +1,21 @@
-.col-lg-8 {
+.addimg-container {
     max-width: 300px;
     margin: 0 auto;
     padding: 20px;
+<<<<<<< HEAD:src/pages/owners/addHouse.css
     background-color: rgba(38, 126, 111, 0.41);
+=======
+    background: linear-gradient(to right, #22b4c1cc, #0991ba);
+>>>>>>> 8281425996a8d3febe381627b1ce83b60d13b9be:public/assets/css/addHouse.css
     border-radius: 5px;
-}
+  }
 
-/*label {*/
-/*    font-weight: bold;*/
-/*    display: block;*/
-/*    margin-bottom: 10px;*/
-/*}*/
 
 .inpdddut[type="file"] {
     padding: 10px;
     margin-bottom: 20px;
     border: none;
-    background-color: #1aa3bb;
+    background: transparent;
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
@@ -24,7 +23,7 @@
 
 .inpdddut[type="submit"] {
     padding: 10px 20px;
-    background-color: #008CBA;
+    background: transparent;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -32,6 +31,7 @@
 }
 
 .inpdddut[type="submit"]:hover {
-    background-color: #006F8F;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
     

@@ -9,7 +9,6 @@ import { HouseList } from "./pages/houseList";
 
 function App() {
     let user = useSelector(({user}) => {
-        console.log(user.currenState)
         return user.currenState;
     })
   return (

@@ -10,13 +10,20 @@ export function Login() {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const submit = () => {
-        console.log(username, password)
         dispatch(login({
             username: username,
             password: password
         })).then((data) => {
             console.log(data, "data")
-            if (data.payload === "User is not exist") {
+            if (data.payload === "wrong username or password" ) {
+                alert(
+                    'wrong username or password'
+                )
+                localStorage.clear();
+                navigate('/login');
+            }else if(data.payload === "wrong password" ) {
+                alert(
+                    'wrong password')
                 localStorage.clear();
                 navigate('/login');
             } else {
