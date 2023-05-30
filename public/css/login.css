@@ -1,0 +1,80 @@
+.form-box-login {
+    max-width: 700px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 16px;
+    color: #010101;
+}
+
+.form-login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 24px;
+    gap: 16px;
+    text-align: center;
+}
+
+/*Form text*/
+.title-login {
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.subtitle-login {
+    font-size: 1rem;
+    color: #666;
+}
+
+/*Inputs box*/
+.form-container-login {
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 1rem 0 .5rem;
+    width: 100%;
+}
+
+.input-login {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+.form-section-login {
+    padding: 16px;
+    font-size: .85rem;
+    background-color: #e0ecfb;
+    box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+}
+
+.form-section-login a {
+    font-weight: bold;
+    color: #22b3c1;
+    transition: color .3s ease;
+}
+
+.form-section-login a:hover {
+    color: #22b3c1;
+    text-decoration: underline;
+}
+
+/*Button*/
+.form-login button {
+    border: 1px solid #22b3c1;
+    background-color: white;
+    color: #22b3c1;
+    border-radius: 24px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.form-login button:hover {
+    background-color: #22b3c1;
+    color: white;
+}

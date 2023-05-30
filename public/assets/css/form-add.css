@@ -6,8 +6,8 @@
     justify-content: center;
     position: relative;
     border-radius: 3px;
-    border: 1px solid #396afc;
-    background: linear-gradient(to right, #005c97, #363795);
+    border: 1px solid #22B3C1;
+    background: linear-gradient(to right, #22b4c1cc, #0991ba);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
   
@@ -48,7 +48,7 @@
     font-size: 100%;
     position: absolute;
     left: 0;
-    color: #e8e8e8;
+    color: #fbf4f4;
     padding: 0.7em;
     margin-left: 0.1em;
     pointer-events: none;
@@ -72,7 +72,7 @@
   }
   
   .inputGroup-addHouse :is(input:focus, input:valid) {
-    border-color: rgb(37, 37, 211);
+    border-color: rgb(0, 127, 173);
   }
   
   .form-addHouse button {
