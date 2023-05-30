@@ -21,6 +21,7 @@ function App() {
                   user ?
                       <>
                           <Route path={'home'} element={<Home/>}>
+                            <Route path={""} element={<HouseList />}></Route>
                               <Route path={"create"} element={<AddHouseRenting />}></Route>
 
                           </Route>
