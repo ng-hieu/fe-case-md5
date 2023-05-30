@@ -34,7 +34,7 @@ export function Register() {
                                             <span>Password</span>
                                         </label>
                                         <label>
-                                            <input required placeholder type="password" className="input" />
+                                            <input required placeholder type="text" className="input" />
                                             <span>Address</span>
                                         </label>
                                         <button className="submit">Submit</button>
