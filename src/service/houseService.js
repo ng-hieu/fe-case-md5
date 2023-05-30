@@ -1,3 +1,4 @@
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import customAPI from "./customAPI";
 
@@ -30,3 +31,4 @@ export const EditHouseById = createAsyncThunk(
     return arg.value;
   }
 );
+
