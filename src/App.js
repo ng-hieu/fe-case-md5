@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import { Login } from "./pages/user/login";
 import { Register } from "./pages/user/register";
 import { AddHouseRenting } from "./pages/owners/addHouseRensting";
+import { HouseList } from "./pages/houseList";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path={"login"} element={<Login />}></Route>
         <Route path={"register"} element={<Register />}></Route>
         <Route path={"home"} element={<Home />}>
+          <Route path="" element={<HouseList/>}></Route>
           <Route path={"create"} element={<AddHouseRenting />}></Route>
         </Route>
       </Routes>
