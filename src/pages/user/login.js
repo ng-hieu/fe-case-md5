@@ -1,8 +1,13 @@
 import {Navbar} from "../../components/Navbar/navbar";
 import {Link} from "react-router-dom";
-
-
+import { login } from "../../service/userService";
+import {useDispatch} from "react-redux";
 export function Login() {
+    const dispatch=useDispatch();
+    const onSubmit= (user)=>{
+        dispatch(login(user));
+    }
+    
     return (
         <>
             <Navbar></Navbar>
@@ -20,7 +25,7 @@ export function Login() {
                                                     <input type="text" className="input-login" placeholder="User Name"/>
                                                     <input type="password" className="input-login" placeholder="Password"/>
                                                 </div>
-                                                <button className="submit">LogIn</button>
+                                                <button className="submit" onClick={onSubmit}>LogIn</button>
                                             </form>
                                             <div className="form-section-login">
                                                 <p>Do not have an account? <Link to={'/register'}>Register</Link></p>
