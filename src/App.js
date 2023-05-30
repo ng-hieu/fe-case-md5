@@ -5,6 +5,7 @@ import { Login } from "./pages/user/login";
 import { Register } from "./pages/user/register";
 import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 import {useSelector} from "react-redux";
+import { HouseList } from "./pages/houseList";
 
 function App() {
     let user = useSelector(({user}) => {
