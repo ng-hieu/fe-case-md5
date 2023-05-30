@@ -85,7 +85,7 @@ export function AddHouseRenting() {
                                                             setImageUpload(event.target.files[0]);
                                                         }}
                                                     />
-                                                    <button onClick={uploadFile} className="inpdddut">
+                                                    <button type="submit" onClick={uploadFile} className="inpdddut">
                                                         Upload Image
                                                     </button>
                                                 </div>
