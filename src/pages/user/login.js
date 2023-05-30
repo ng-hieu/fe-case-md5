@@ -10,12 +10,10 @@ export function Login() {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const submit = () => {
-        console.log(username, password)
         dispatch(login({
             username: username,
             password: password
         })).then((data) => {
-            console.log(data, "data")
             if (data.payload === "User is not exist") {
                 localStorage.clear();
                 navigate('/login');
