@@ -6,7 +6,8 @@ import houseReducer from "../redux/house/houseSlice";
 export const store = configureStore({
   reducer: {
     houseList: houseReducer,
-    user: userReducer
+    user: userReducer,
+    house: houseReducer,
 
   },
 });

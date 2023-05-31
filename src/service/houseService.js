@@ -1,4 +1,3 @@
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import customAPI from "./customAPI";
 
@@ -10,15 +9,19 @@ export const getAllHouse = createAsyncThunk("house/getAllHouse", async () => {
 export const getHouseById = createAsyncThunk(
   "house/showHouseById",
   async (id) => {
+    console.log(id,"da vao getHousebyHouse");
     const response = await customAPI.get(`house/${id}`);
     return response.data;
   }
 );
 
-export const createHouse = createAsyncThunk("house/createHouse", async (value) => {
-  const res = await customAPI.post("house",value);
-  return res.data;
-});
+export const createHouse = createAsyncThunk(
+  "house/createHouse",
+  async (value) => {
+    const res = await customAPI.post("house", value);
+    return res.data;
+  }
+);
 
 export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
   const res = await customAPI.delete(`house/${id}`);
@@ -31,4 +34,3 @@ export const EditHouseById = createAsyncThunk(
     return arg.value;
   }
 );
-
