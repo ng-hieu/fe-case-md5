@@ -57,7 +57,7 @@ export function AddHouseRenting() {
                               />
                               <label htmlFor="description">Description</label>
                             </div>
-                            <button>ADD HOUSE →</button>
+                            <button onClick={uploadFile} >ADD HOUSE →</button>
                           </form>
                         </div>
                       </div>
@@ -80,7 +80,7 @@ export function AddHouseRenting() {
                           />
                           <button
                             type="submit"
-                            onClick={uploadFile}
+                            
                             className="inpdddut">
                             Upload Image
                           </button>

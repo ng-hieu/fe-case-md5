@@ -2,11 +2,8 @@
     max-width: 300px;
     margin: 0 auto;
     padding: 20px;
-<<<<<<< HEAD:src/pages/owners/addHouse.css
     background-color: rgba(38, 126, 111, 0.41);
-=======
     background: linear-gradient(to right, #22b4c1cc, #0991ba);
->>>>>>> 8281425996a8d3febe381627b1ce83b60d13b9be:public/assets/css/addHouse.css
     border-radius: 5px;
   }
 
