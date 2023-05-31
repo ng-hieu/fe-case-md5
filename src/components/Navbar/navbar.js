@@ -20,12 +20,8 @@ export function Navbar() {
                 </a>
               </div>
             </div>
-            <div className="col-11">
+            <div className="col-9">
               <nav className="main-nav">
-                {/* {/* ***** Logo Start *****  */}
-
-                {/* {/* ***** Logo End *****  */}
-                {/* {/* ***** Menu Start *****  */}
                 <ul className="nav">
                   <li>
                     <a href="index.html" className="active">
@@ -39,15 +35,24 @@ export function Navbar() {
                     <a href="deals.html">Deals</a>
                   </li>
                   <li>
-                    <a href="reservation.html">Reservation</a>
-                  </li>
-                  <li>
                     <a href="reservation.html">Book Yours</a>
                   </li>
                 </ul>
                 <a className="menu-trigger">
                   <span>Menu</span>
                 </a>
+              </nav>
+            </div>
+            <div className="col-2">
+              <nav className="main-nav">
+                <ul className="nav flex-nowrap" >
+                  <li>
+                    <a href="index.html">SignIn</a>
+                  </li>
+                  <li>
+                    <a href="about.html">SignUp</a>
+                  </li>
+                </ul>
                 {/* ***** Menu End *****  */}
               </nav>
             </div>

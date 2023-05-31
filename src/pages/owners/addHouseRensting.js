@@ -36,6 +36,10 @@ export function AddHouseRenting() {
                             </div>
                             <div className="input-addHouse">
                               <input required autoComplete="off" type="text" />
+                              <label htmlFor="price">Name House</label>
+                            </div>
+                            <div className="input-addHouse">
+                              <input required autoComplete="off" type="text" />
                               <label htmlFor="price">Price</label>
                             </div>
                             <div className="input-addHouse">
@@ -58,6 +62,7 @@ export function AddHouseRenting() {
                               <label htmlFor="description">Description</label>
                             </div>
                             <button onClick={uploadFile} >ADD HOUSE →</button>
+                            <button onClick={uploadFile}>ADD HOUSE →</button>
                           </form>
                         </div>
                       </div>
