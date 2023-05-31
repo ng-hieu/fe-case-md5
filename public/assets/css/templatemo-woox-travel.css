@@ -2144,7 +2144,7 @@ Reservation Page Style
   color: #afafaf;
 }
 
-.reservation-form #reservation-form input,
+.reservation-form #reservation-form .input,
 .reservation-form #reservation-form select {
   width: 100%;
   height: 46px;
