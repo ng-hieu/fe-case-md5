@@ -2,13 +2,13 @@ import {Navbar} from "../../components/Navbar/navbar";
 import {useEffect, useState} from "react";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {storage} from "../firebase";
-import {v4, validate} from "uuid";
+import {v4} from "uuid";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
-import {createHouse, getDistrict} from "../../service/houseService";
+import {createHouse} from "../../service/houseService";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import CustomAPI from "../../service/customAPI";
+import customAPI from "../../service/customAPI";
+
 
 export function AddHouseRenting() {
     const dispatch = useDispatch();
@@ -37,11 +37,31 @@ export function AddHouseRenting() {
         setSelectedFile(event.target.files[0]);
     };
 
-    // const [district,setDistrict]=useState()
-    // useEffect(async (idDistrict)=>{
-    //     dispatch(getDistrict)
-    //     setDistrict(idDistrict)
-    // },[])
+    const [district, setDistrict] = useState([])
+    const [districtId, setDistrictId] = useState('');
+    useEffect(() => {
+        customAPI.get(`district`)
+            .then((response) => {
+                setDistrict(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [])
+    const handleDistrictChange = (id) => {
+        console.log(id)
+        setDistrictId(id);
+    }
+    const [wards, setWards] = useState([])
+    useEffect(() => {
+        customAPI.get(`wards/${districtId}`)
+            .then((response) => {
+                setWards(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [districtId]);
 
     return (
         <>
@@ -51,7 +71,7 @@ export function AddHouseRenting() {
                     nameHouse: "",
                     price: "",
                     area: "",
-                    description: ""
+                    description: "",
                 }}
                 onSubmit={(values, {setSubmitting}) => {
                     submit(values)
@@ -69,7 +89,7 @@ export function AddHouseRenting() {
                       /* and other goodies */
                   }) => (
                     <Form>
-
+                            <p>{console.log(values)} </p>
                         <div className="about-main-content">
                             <div className="container">
                                 <div className="row">
@@ -112,18 +132,43 @@ export function AddHouseRenting() {
                                                                         <label htmlFor="area">Area</label>
                                                                     </div>
                                                                     <div className="input-addHouse">
-                                                                    <Field
-                                                                        required
-                                                                        autoComplete="off"
-                                                                        name="description"
-                                                                        type="text"
-                                                                    />
+                                                                        <Field
+                                                                            required
+                                                                            autoComplete="off"
+                                                                            name="description"
+                                                                            type="text"
+                                                                        />
                                                                         <label htmlFor="description">Description</label>
                                                                     </div>
                                                                     <div>
-                                                                        {/*<Field as={'select'} name={'district'}>*/}
-                                                                        {/*    <option onClick={}>Quận</option>*/}
-                                                                        {/*</Field>*/}
+                                                                        <Field component={'select'} name={'district'}
+                                                                               onChange={(e) => {
+                                                                                   handleDistrictChange(e.target.value)
+                                                                                   setFieldValue("district",e.target.value)
+                                                                               }}>
+                                                                            <option value=''>Chọn Quận</option>
+                                                                            {district.map((item) => {
+                                                                                return <option key={item.id}
+                                                                                               value={item.id}>{item.name}
+                                                                                </option>
+                                                                            })
+                                                                            }
+                                                                        </Field>
+                                                                    </div>
+                                                                    <div>
+                                                                        <Field component={'select'} name={'wards'}
+                                                                               // onChange={(e) => {
+                                                                               //     handleDistrictChange(e.target.value)
+                                                                               // }}
+                                                                        >
+                                                                            <option value=''>Chọn Phường/Xã</option>
+                                                                            {wards.map((item) => {
+                                                                                return <option key={item.id}
+                                                                                               value={item.id}>{item.name}
+                                                                                </option>
+                                                                            })
+                                                                            }
+                                                                        </Field>
                                                                     </div>
                                                                     <button type="submit">ADD HOUSE →</button>
                                                                 </div>

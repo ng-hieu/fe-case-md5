@@ -14,13 +14,7 @@ export const getHouseById = createAsyncThunk(
     return response.data;
   }
 );
-export const getDistrict = createAsyncThunk(
-    "house/district",
-    async () => {
-        const response = await customAPI.get(`house/district`);
-        return response.data;
-    }
-);
+
 export const getWards = createAsyncThunk(
     "house/wards",
     async (id) => {
