@@ -14,7 +14,16 @@ export function Login() {
             username: username,
             password: password
         })).then((data) => {
-            if (data.payload === "User is not exist") {
+            console.log(data, "data")
+            if (data.payload === "wrong username or password" ) {
+                alert(
+                    'wrong username or password'
+                )
+                localStorage.clear();
+                navigate('/login');
+            }else if(data.payload === "wrong password" ) {
+                alert(
+                    'wrong password')
                 localStorage.clear();
                 navigate('/login');
             } else {
