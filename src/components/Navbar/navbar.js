@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export function Navbar() {
   return (
     <>
@@ -47,7 +48,7 @@ export function Navbar() {
               <nav className="main-nav">
                 <ul className="nav">
                   <li>
-                    <a href="index.html">SignIn</a>
+                    <Link to="">SignIn</Link>
                   </li>
                   <li>
                     <a href="about.html">SignUp</a>
