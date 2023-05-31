@@ -6,7 +6,6 @@ export function Home() {
   return (
     <>
       <Navbar></Navbar>
-      <Header></Header>
       <Outlet></Outlet>
       {/*<Footer></Footer> */}
     </>

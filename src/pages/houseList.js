@@ -3,6 +3,7 @@ import { useEffect } from "react";
 // import {Link} from "react-router-dom"
 // import axios from "axios";
 import { getAllHouse } from "../service/houseService";
+import { Header } from "../components/Header/header";
 export function HouseList() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
@@ -15,6 +16,7 @@ export function HouseList() {
   }, []);
   return (
     <>
+    <Header></Header>
       <div className="visit-country">
         <div className="container">
           <div className="row">
