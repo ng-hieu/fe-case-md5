@@ -62,7 +62,7 @@ export function AddHouseRenting() {
                               <label htmlFor="description">Description</label>
                             </div>
                             <button onClick={uploadFile} >ADD HOUSE →</button>
-                            <button onClick={uploadFile}>ADD HOUSE →</button>
+                            {/* <button onClick={uploadFile}>ADD HOUSE →</button> */}
                           </form>
                         </div>
                       </div>
@@ -83,12 +83,12 @@ export function AddHouseRenting() {
                               setImageUpload(event.target.files[0]);
                             }}
                           />
-                          <button
+                          {/* <button
                             type="submit"
                             
                             className="inpdddut">
                             Upload Image
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>

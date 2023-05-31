@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 // import axios from "axios";
 import { getAllHouse } from "../service/houseService";
 import { Header } from "../components/Header/header";
@@ -46,8 +46,6 @@ export function HouseList() {
                           </div>
                           <div className="col-lg-8 col-sm-7">
                             <div className="right-content">
-                            {console.log(item)}
-
                               <h4>{item.nameHouse}</h4>
                               <span>{item.district.name}</span>
                               <p>
@@ -65,12 +63,7 @@ export function HouseList() {
                                   {item.price} VND
                                 </li>
                               </ul>
-                              {/* <div className="text-button">
-                                <a href="about.html">
-                                  Need Directions ?{" "}
-                                  <i className="fa fa-arrow-right" />
-                                </a>
-                              </div> */}
+                              <button><Link to={`/home/edit/${item.id}`}>Edit</Link></button>
                             </div>
                           </div>
                         </div>
