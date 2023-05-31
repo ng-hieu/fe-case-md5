@@ -2,6 +2,7 @@
     max-width: 300px;
     margin: 0 auto;
     padding: 20px;
+    background-color: rgba(38, 126, 111, 0.41);
     background: linear-gradient(to right, #22b4c1cc, #0991ba);
     border-radius: 5px;
   }

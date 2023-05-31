@@ -1,5 +1,9 @@
-import { Link } from "react-router-dom";
-export function Navbar() {
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteUser } from "../../redux/user/userSlice";
+export function NavbarAfLogin() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   return (
     <>
       {/* ***** Header Area Start *****  */}
@@ -46,14 +50,12 @@ export function Navbar() {
             </div>
             <div className="col-2">
               <nav className="main-nav">
-                <ul className="nav">
-                  <li>
-                    <Link to="">SignIn</Link>
-                  </li>
-                  <li>
-                    <a href="about.html">SignUp</a>
-                  </li>
-                </ul>
+                <button id = 'btn-deleteLocalStorage'
+                  onClick={() => {
+                    dispatch(deleteUser);
+                    localStorage.removeItem("user");
+                    navigate("/login")
+                  }}>Logout</button>
                 {/* ***** Menu End *****  */}
               </nav>
             </div>

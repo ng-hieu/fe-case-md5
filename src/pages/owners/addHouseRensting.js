@@ -1,4 +1,4 @@
-import { Navbar } from "../../components/Navbar/navbar";
+import {NavbarBfLogin } from "../../components/Navbar/navbarBfLogin";
 import { useState, useEffect } from "react";
 import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "../firebase";
@@ -18,7 +18,7 @@ export function AddHouseRenting() {
 
   return (
     <>
-      <Navbar></Navbar>
+      <NavbarBfLogin></NavbarBfLogin>
 
       <div className="about-main-content">
         <div className="container">
@@ -61,6 +61,7 @@ export function AddHouseRenting() {
                               />
                               <label htmlFor="description">Description</label>
                             </div>
+                            <button onClick={uploadFile} >ADD HOUSE →</button>
                             <button onClick={uploadFile}>ADD HOUSE →</button>
                           </form>
                         </div>
@@ -84,7 +85,7 @@ export function AddHouseRenting() {
                           />
                           <button
                             type="submit"
-                            onClick={uploadFile}
+                            
                             className="inpdddut">
                             Upload Image
                           </button>

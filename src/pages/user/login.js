@@ -1,4 +1,4 @@
-import {Navbar} from "../../components/Navbar/navbar";
+import {NavbarBfLogin} from "../../components/Navbar/navbarBfLogin";
 import {Link, useNavigate} from "react-router-dom";
 import {login} from "../../service/userService";
 import {useDispatch} from "react-redux";
@@ -34,7 +34,7 @@ export function Login() {
 
     return (
         <>
-            <Navbar></Navbar>
+            {/* <NavbarBfLogin></NavbarBfLogin> */}
             <div className="about-main-content">
                 <div className="container">
                     <div className="row">
