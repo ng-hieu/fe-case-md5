@@ -4,19 +4,40 @@ import { useEffect } from "react";
 // import axios from "axios";
 import { getAllHouse } from "../service/houseService";
 import { Header } from "../components/Header/header";
+import { FilterHouse } from "../components/Filter/filter";
 export function HouseList() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
     return houseList.listHouse;
   });
-  console.log("house", house);
+  const sortOrder = useSelector(({ houseList }) => {
+    return houseList.sortOrder;
+  });
 
+  let sortedHouses = [...house];
+  switch (sortOrder) {
+    case "1":
+      sortedHouses.sort((a, b) => {
+        return a.price - b.price;
+      });
+      break;
+    case "2":
+      sortedHouses.sort((a, b) => {
+        return b.price - a.price;
+      });
+      break;
+    default:
+      break;
+  }
+
+ 
   useEffect(() => {
     dispatch(getAllHouse());
   }, []);
   return (
     <>
-    <Header></Header>
+      <Header></Header>
+      <FilterHouse></FilterHouse>
       <div className="visit-country">
         <div className="container">
           <div className="row">
@@ -31,28 +52,27 @@ export function HouseList() {
             <div className="col-lg-8">
               <div className="items">
                 <div className="row">
-                  {house.map((item) =>
+                  {sortedHouses.map((item) => (
                     <div className="col-lg-12">
                       <div className="item">
                         <div className="row">
                           <div className="col-lg-4 col-sm-5">
-                            
                             <div className="image">
                               <img
-                                src={(item.image[0])?item.image[0].imageURL:''}
+                                src={
+                                  item.image[0] ? item.image[0].imageURL : ""
+                                }
                                 alt=""
                               />
                             </div>
                           </div>
                           <div className="col-lg-8 col-sm-7">
                             <div className="right-content">
-                            {console.log(item)}
+                              {console.log(item)}
 
                               <h4>{item.nameHouse}</h4>
                               <span>{item.district.name}</span>
-                              <p>
-                                {item.description}
-                              </p>
+                              <p>{item.description}</p>
                               <ul className="info">
                                 <li>
                                   <i className="fa fa-user" /> 8.66 Mil People
@@ -76,7 +96,7 @@ export function HouseList() {
                         </div>
                       </div>
                     </div>
-                  )}
+                  ))}
                 </div>
               </div>
             </div>

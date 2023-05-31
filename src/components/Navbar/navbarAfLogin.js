@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { deleteUser } from "../../redux/user/userSlice";
 export function NavbarAfLogin() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       {/* ***** Header Area Start *****  */}
@@ -12,7 +12,7 @@ export function NavbarAfLogin() {
           <div className="row" style={{ height: "100%" }}>
             <div className="col-1" style={{ height: "100%" }}>
               <div style={{ height: "100%" }}>
-                <a href="index.html" className="logo">
+                <Link to={"/home"} className="logo">
                   <img
                     src="/assets/images/logo.png"
                     alt=""
@@ -22,16 +22,16 @@ export function NavbarAfLogin() {
                       aspectRatio: "1/1",
                     }}
                   />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-9">
               <nav className="main-nav">
                 <ul className="nav">
                   <li>
-                    <a href="index.html" className="active">
+                    <Link to={"/home"} className="active">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="about.html">About</a>
@@ -50,12 +50,15 @@ export function NavbarAfLogin() {
             </div>
             <div className="col-2">
               <nav className="main-nav">
-                <button id = 'btn-deleteLocalStorage'
+                <button
+                  id="btn-deleteLocalStorage"
                   onClick={() => {
                     dispatch(deleteUser);
                     localStorage.removeItem("user");
-                    navigate("/login")
-                  }}>Logout</button>
+                    navigate("/login");
+                  }}>
+                  Logout
+                </button>
                 {/* ***** Menu End *****  */}
               </nav>
             </div>

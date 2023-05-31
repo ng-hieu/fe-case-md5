@@ -8,7 +8,7 @@ export function NavbarBfLogin() {
           <div className="row" style={{ height: "100%" }}>
             <div className="col-1" style={{ height: "100%" }}>
               <div style={{ height: "100%" }}>
-                <a href="index.html" className="logo">
+                <Link to={"/home"} className="logo">
                   <img
                     src="/assets/images/logo.png"
                     alt=""
@@ -18,16 +18,16 @@ export function NavbarBfLogin() {
                       aspectRatio: "1/1",
                     }}
                   />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-9">
               <nav className="main-nav">
                 <ul className="nav">
                   <li>
-                    <a href="index.html" className="active">
+                    <Link to={"/home"} className="active">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="about.html">About</a>
@@ -46,12 +46,12 @@ export function NavbarBfLogin() {
             </div>
             <div className="col-2">
               <nav className="main-nav">
-                <ul className="nav flex-nowrap" >
+                <ul className="nav flex-nowrap">
                   <li>
-                    <Link to={'/login'}>Login</Link>
+                    <Link to={"/login"}>Login</Link>
                   </li>
                   <li>
-                   <Link to={'/register'}>Register</Link>
+                    <Link to={"/register"}>Register</Link>
                   </li>
                 </ul>
                 {/* ***** Menu End *****  */}
