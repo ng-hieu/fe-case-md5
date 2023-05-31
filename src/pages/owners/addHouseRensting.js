@@ -1,24 +1,45 @@
-import {NavbarBfLogin } from "../../components/Navbar/navbarBfLogin";
-import { useState, useEffect } from "react";
-import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
-import { storage } from "../firebase";
-import { v4 } from "uuid";
+import {Navbar} from "../../components/Navbar/navbar";
+import {useEffect, useState} from "react";
+import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
+import {storage} from "../firebase";
+import {v4} from "uuid";
+import {Field, Form, Formik} from "formik";
+import {useDispatch} from "react-redux";
+import {createHouse} from "../../service/houseService";
+import {useNavigate} from "react-router-dom";
+import customAPI from "../../service/customAPI";
+
 
 export function AddHouseRenting() {
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageUrls, setImageUrls] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const [imageUrls, setImageUrls] = useState([]);
+    const [selectedFile, setSelectedFile] = useState(null);
 
-  const uploadFile = async () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, ` images/${imageUpload.name + v4()}`);
-    await uploadBytes(imageRef, imageUpload);
-    const url = await getDownloadURL(imageRef);
-    setImageUrls((prev) => [...prev, url]);
-  };
+    const uploadFile = async (setFieldValue) => {
+        if (!selectedFile) return;
+        const imageRef = ref(storage, `images/${selectedFile.name + v4()}`);
+        await uploadBytes(imageRef, selectedFile);
+        const url = await getDownloadURL(imageRef);
+        setFieldValue("image", [...imageUrls, url]);
+        setImageUrls((prev) => [...prev, url]);
+
+    };
+
+    const submit = (house) => {
+        console.log(house, "add house")
+        dispatch(createHouse(house))
+        navigate('/home')
+
+    };
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
 
   return (
     <>
-      <NavbarBfLogin></NavbarBfLogin>
+      <Navbar></Navbar>
 
       <div className="about-main-content">
         <div className="container">
@@ -61,7 +82,6 @@ export function AddHouseRenting() {
                               />
                               <label htmlFor="description">Description</label>
                             </div>
-                            <button onClick={uploadFile} >ADD HOUSE →</button>
                             <button onClick={uploadFile}>ADD HOUSE →</button>
                           </form>
                         </div>
@@ -85,7 +105,7 @@ export function AddHouseRenting() {
                           />
                           <button
                             type="submit"
-                            
+                            onClick={uploadFile}
                             className="inpdddut">
                             Upload Image
                           </button>
