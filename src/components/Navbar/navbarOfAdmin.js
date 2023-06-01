@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser } from "../../redux/user/userSlice";
-export function NavbarAfLogin() {
+export function NavbarOfAdmin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -27,25 +27,20 @@ export function NavbarAfLogin() {
             </div>
             <div className="col-9">
               <nav className="main-nav">
-                <ul className="nav">
+              <ul className="nav">
                   <li>
-                    <Link to={"/home"} className="active">
-                      Home
-                    </Link>
+                    <Link to={"/home"}>Home</Link>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <Link to={"/home/list-user"}>List User</Link>
                   </li>
                   <li>
-                    <a href="deals.html">Deals</a>
+                    <Link href="deals.html">Deals</Link>
                   </li>
                   <li>
-                    <a href="reservation.html">Book Yours</a>
+                    <Link href="reservation.html">Book Yours</Link>
                   </li>
                 </ul>
-                <a className="menu-trigger">
-                  <span>Menu</span>
-                </a>
               </nav>
             </div>
             <div className="col-2">

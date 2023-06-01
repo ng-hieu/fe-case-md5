@@ -1,4 +1,4 @@
-import {NavbarBfLogin} from "../../components/Navbar/navbarBfLogin";
+// import {NavbarBfLogin} from "../../components/Navbar/navbarBfLogin";
 import {Link, useNavigate} from "react-router-dom";
 import {registerUser} from "../../service/userService";
 import {useDispatch} from "react-redux";
@@ -10,7 +10,7 @@ export function Register() {
 
     return (
         <>
-            <NavbarBfLogin></NavbarBfLogin>
+            {/* <NavbarBfLogin></NavbarBfLogin> */}
             <Formik
                 initialValues={{
                     name: "",

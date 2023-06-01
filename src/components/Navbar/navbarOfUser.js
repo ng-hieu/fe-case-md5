@@ -1,5 +1,9 @@
-import { Link } from "react-router-dom";
-export function NavbarBfLogin() {
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteUser } from "../../redux/user/userSlice";
+export function NavbarOfUser() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <>
       {/* ***** Header Area Start *****  */}
@@ -21,39 +25,35 @@ export function NavbarBfLogin() {
                 </Link>
               </div>
             </div>
-            <div className="col-9">
+            <div className="col-10">
               <nav className="main-nav">
                 <ul className="nav">
                   <li>
-                    <Link to={"/home"} className="active">
-                      Home
-                    </Link>
+                    <Link to={"/home"}>Home</Link>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <Link to={"/home/create"}>Add House</Link>
                   </li>
                   <li>
-                    <a href="deals.html">Deals</a>
+                    <Link href="deals.html">Deals</Link>
                   </li>
                   <li>
-                    <a href="reservation.html">Book Yours</a>
+                    <Link href="reservation.html">Book Yours</Link>
                   </li>
                 </ul>
-                <a className="menu-trigger">
-                  <span>Menu</span>
-                </a>
               </nav>
             </div>
-            <div className="col-2">
+            <div className="col-1">
               <nav className="main-nav">
-                <ul className="nav flex-nowrap">
-                  <li>
-                    <Link to={"/login"}>Login</Link>
-                  </li>
-                  <li>
-                    <Link to={"/register"}>Register</Link>
-                  </li>
-                </ul>
+                <button
+                  id="btn-deleteLocalStorage"
+                  onClick={() => {
+                    dispatch(deleteUser);
+                    localStorage.removeItem("user");
+                    navigate("/login");
+                  }}>
+                  Logout
+                </button>
                 {/* ***** Menu End *****  */}
               </nav>
             </div>

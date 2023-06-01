@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
-import { NavbarBfLogin } from "../components/Navbar/navbarBfLogin";
 // import { Footer } from "../components/Footer/footer";
 import { Outlet } from "react-router-dom";
-import { NavbarAfLogin } from "../components/Navbar/navbarAfLogin";
+import { NavbarOfUser } from "../components/Navbar/navbarOfUser";
+import { NavbarOfAdmin} from "../components/Navbar/navbarOfAdmin";
 export function Home() {
   let user = useSelector(({ user }) => {
     return user.currenState;
   });
+  console.log(user.role);
   return (
     <>
-      {user ? <NavbarAfLogin></NavbarAfLogin> : <NavbarBfLogin></NavbarBfLogin>}
+      {user.role === 1 ? <NavbarOfAdmin></NavbarOfAdmin> : <NavbarOfUser></NavbarOfUser>}
       <Outlet></Outlet>
       {/*<Footer></Footer> */}
     </>
