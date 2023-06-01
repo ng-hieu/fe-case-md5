@@ -10,7 +10,6 @@ const initialState = {
 
 const houseSlice = createSlice({
     name:'houseList',
-    reducers: {},
     initialState,
     reducers: {
         setSortOrder: (currentState, action) => {

@@ -60,10 +60,12 @@ export function HouseList() {
                         <div className="row">
                           <div className="col-lg-4 col-sm-5">
                             <div className="image">
-                              <img
-                                src={(item.image[0])?item.image[0].imageURL:''}
-                                alt=""
-                              />
+                            <Link to={`/home/${item.id}`}>
+                                <img
+                                    src={(item.image[0])?item.image[0].imageURL:''}
+                                    alt=""
+                                />
+                              </Link>
                             </div>
                           </div>
                           <div className="col-lg-8 col-sm-7">
