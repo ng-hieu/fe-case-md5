@@ -23,14 +23,11 @@ export const createHouse = createAsyncThunk(
   }
 );
 
-export const deleteHouse = createAsyncThunk(
-  "house/deleteHouse",
-  async(id)=>{
-    let abc = await customAPI.delete(`/house/${id}`);
-    console.log(abc,22);
-    return id
-  }
-)
+export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
+  let abc = await customAPI.delete(`/house/${id}`);
+  console.log(abc, 22);
+  return id;
+});
 export const EditHouseById = createAsyncThunk(
   "house/EditHouseById",
   async (arg) => {
@@ -38,6 +35,15 @@ export const EditHouseById = createAsyncThunk(
     return arg.value;
   }
 );
+
+export const listOFHouseForRent = createAsyncThunk(
+  "house/ListOfHouseForRent",
+  async (id) => {
+    const res = await customAPI.get(`house/user/${id}`);
+    return res.data;
+  }
+);
+
 export const findHouseById = createAsyncThunk(
   "house/findHouseById",
   async (id) => {

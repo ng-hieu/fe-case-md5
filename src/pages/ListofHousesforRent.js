@@ -1,36 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {Link} from "react-router-dom"
-import { deleteHouse, getAllHouse } from "../service/houseService";
+import { Link } from "react-router-dom";
+import { deleteHouse, listOFHouseForRent } from "../service/houseService";
 export function ListOFHouseForRent() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
-return houseList.listHouse;
+    return houseList.house;
   });
-  const sortOrder = useSelector(({ houseList }) => {
-    return houseList.sortOrder;
-  });
+  const userId = JSON.parse(localStorage.getItem("user")).id;
 
-  let sortedHouses = [...house];
-  switch (sortOrder) {
-    case "1":
-      sortedHouses.sort((a, b) => {
-        return a.price - b.price;
-      });
-      break;
-    case "2":
-      sortedHouses.sort((a, b) => {
-        return b.price - a.price;
-      });
-      break;
-    default:
-      break;
-  }
-
- 
   useEffect(() => {
-    dispatch(getAllHouse());
+    dispatch(listOFHouseForRent(userId));
   }, []);
+
   return (
     <>
       <div className="visit-country">
@@ -47,7 +29,9 @@ return houseList.listHouse;
             <div className="col-lg-8">
               <div className="items">
                 <div className="row">
-                  {sortedHouses.map((item) => (
+                  {console.log(house)}
+                  {house.map((item) => (
+                    
                     <div className="col-lg-12">
                       <div className="item">
                         <div className="row">
@@ -63,10 +47,8 @@ return houseList.listHouse;
                           </div>
                           <div className="col-lg-8 col-sm-7">
                             <div className="right-content">
-                              {console.log(item)}
-
                               <h4>{item.nameHouse}</h4>
-                              <span>{item.district.name}</span>
+                              {/* <span>{item.district.name}</span> */}
                               <p>{item.description}</p>
                               <p>{item.user && item.user.name}</p>
                               <ul className="info">
@@ -81,8 +63,14 @@ return houseList.listHouse;
                                   {item.price} VND
                                 </li>
                               </ul>
-                              <button><Link to={`/home/edit/${item.id}`}>Edit</Link></button>
-                              <button onClick={() => dispatch(deleteHouse(item.id))}>Delete</button>
+                              <button>
+                                <Link to={`/home/edit/${item.id}`}>Edit</Link>
+                              </button>
+                              <button
+                                onClick={() => dispatch(deleteHouse(item.id))}
+                              >
+                                Delete
+                              </button>
                             </div>
                           </div>
                         </div>
