@@ -2327,6 +2327,18 @@ body {
     padding: 0px;
   }
 }
+.imgContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sizeImg {
+  width: 464px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  margin: 10px;
+}
 #btn-deleteLocalStorage{
   margin-top: 20px;
     border: none;

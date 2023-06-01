@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 // import axios from "axios";
 import { deleteHouse, getAllHouse } from "../service/houseService";
 import { Header } from "../components/Header/header";
+import {Description} from "./house/description";
 import { FilterHouse } from "../components/Filter/filter";
 export function HouseList() {
   const dispatch = useDispatch();
@@ -60,9 +61,7 @@ export function HouseList() {
                           <div className="col-lg-4 col-sm-5">
                             <div className="image">
                               <img
-                                src={
-                                  item.image[0] ? item.image[0].imageURL : ""
-                                }
+                                src={(item.image[0])?item.image[0].imageURL:''}
                                 alt=""
                               />
                             </div>
