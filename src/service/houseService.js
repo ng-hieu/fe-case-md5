@@ -57,3 +57,10 @@ export const findHouseById = createAsyncThunk(
     return res.data;
   }
 );
+export const deleteHouseByUser = createAsyncThunk(
+  "house/deleteHouseByUser",
+  async (id) => {
+    const res = await customAPI.delete(`/house/${id}`);
+    return res.data;
+  }
+);
