@@ -4,6 +4,8 @@ import { useEffect } from "react";
 // import axios from "axios";
 import { getAllHouse } from "../service/houseService";
 import { Header } from "../components/Header/header";
+import {Description} from "./house/description";
+import {Link} from "react-router-dom";
 export function HouseList() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
@@ -38,10 +40,12 @@ export function HouseList() {
                           <div className="col-lg-4 col-sm-5">
                             
                             <div className="image">
-                              <img
-                                src={(item.image[0])?item.image[0].imageURL:''}
-                                alt=""
-                              />
+                              <Link to={`/home/${item.id}`}>
+                                <img
+                                    src={(item.image[0])?item.image[0].imageURL:''}
+                                    alt=""
+                                />
+                              </Link>
                             </div>
                           </div>
                           <div className="col-lg-8 col-sm-7">

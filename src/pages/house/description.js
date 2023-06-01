@@ -15,21 +15,14 @@ export function Description() {
     let user = useSelector(({user}) => {
         return user.currenState;
     });
-    let navigate=useNavigate()
+    let navigate = useNavigate()
 
     const {id} = useParams();
     const house = useSelector(({house}) => {
         return house.house;
     });
-    const [cost, setCost] = useState([
-        // dayjs( new Date()),
-        // dayjs(''),
-    ]);
+    const [cost, setCost] = useState([]);
 
-
-
-    // let startDate= setStartDay(value[0])
-    // let endDate= setEndDay(value[1])
     function daysBetweenDates(startDate, endDate) {
         const oneDay = 24 * 60 * 60 * 1000; // Số milliseconds trong 1 ngày
         const start = new Date(startDate); // Tạo đối tượng Date cho ngày bắt đầu
@@ -81,6 +74,10 @@ export function Description() {
                                 </h6>
                             </div>
                         </div>
+                        <div className="col-lg-4">
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -90,19 +87,22 @@ export function Description() {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className={"col-lg-12"}>
-                                {house.image ? house.image.map((item) =>
-                                        <img src={item.imageURL}/>
-                                    )
-                                    : ""}
+                                <div className={"imgContainer"}>
+                                    {house.image ? house.image.map((item) =>
+                                            <img src={item.imageURL}
+                                                 className={"sizeImg"}/>
+                                        )
+                                        : ""}
+                                </div>
                             </div>
                         </div>
                         <div className="col-lg-12">
                             <Formik
                                 initialValues={{
-                                    userId:user.id,
+                                    userId: user.id,
                                     houseId: id,
                                     status: 3,
-                                    cost:cost
+                                    cost: cost
                                 }}
                                 onSubmit={(values) => {
                                     dispatch(createContract(values));
@@ -175,12 +175,12 @@ export function Description() {
                                                                 const startDate = value[0]["$d"] ? value[0]["$d"] : "2023-06-1";
                                                                 const endDate = value[1]["$d"] ? value[1]["$d"] : "2023-06-11";
                                                                 let days = daysBetweenDates(startDate, endDate) + 1;
-                                                               let  total = days * house.price ? days * house.price : 0;
+                                                                let total = days * house.price ? days * house.price : 0;
                                                                 setFieldValue("startDay", new Date(startDate))
                                                                 setFieldValue("endDay", new Date(endDate))
                                                                 setCost(total)
-                                                              setFieldValue('cost',total)
-                                                              setFieldValue('price',house.price)
+                                                                setFieldValue('cost', total)
+                                                                setFieldValue('price', house.price)
 
                                                             }
 
