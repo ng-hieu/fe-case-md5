@@ -7,6 +7,8 @@ import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 import {useSelector} from "react-redux";
 import { HouseList } from "./pages/houseList";
 import {EditHouseRenting} from "./pages/owners/editHouseRensting";
+import {AdapterDayjs} from "@mui/x-date-pickers-pro/AdapterDayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers-pro";
 
 function App() {
     let user = useSelector(({user}) => {
@@ -14,6 +16,7 @@ function App() {
     })
   return (
       <>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Routes>
               <Route path={'login'} element={<Login/>}/>
               <Route path={'register'} element={<Register/>}/>
@@ -35,6 +38,7 @@ function App() {
               }
 
           </Routes>
+          </LocalizationProvider>
       </>
   );
 }

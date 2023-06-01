@@ -83,8 +83,6 @@ export function EditHouseRenting() {
                             house: values
                         }
                     ))
-
-                    console.log(values, "sau khi update")
                     navigate('/home')
                 }}
             >
