@@ -9,6 +9,8 @@ import { Description } from "./pages/house/description";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AddHouseRenting } from "./pages/user/addHouseRensting";
+import { EditHouse } from "./pages/owners/editHouseReinsting";
+import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 
 function App() {
   let user = useSelector(({ user }) => {
@@ -28,6 +30,9 @@ function App() {
                     <Route path={""} element={<HouseList />}></Route>
                     <Route path={":id"} element={<Description />}></Route>
                     <Route path={"create"} element={<AddHouseRenting />}></Route>
+                    <Route path = {"edit/:id"} element={<EditHouse/>}></Route>
+                    <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
+
                   </>
                 ) : (
                   <>
