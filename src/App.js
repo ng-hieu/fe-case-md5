@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AddHouseRenting } from "./pages/user/addHouseRensting";
 import { EditHouse } from "./pages/owners/editHouseReinsting";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
+import { UserManager } from "./pages/admin/userManagement";
 
 function App() {
   let user = useSelector(({ user }) => {
@@ -32,11 +33,10 @@ function App() {
                     <Route path={"create"} element={<AddHouseRenting />}></Route>
                     <Route path = {"edit/:id"} element={<EditHouse/>}></Route>
                     <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
-
                   </>
                 ) : (
                   <>
-                    <Route path={"list-user"}></Route>
+                    <Route path={""} element = {<UserManager />}></Route>
                   </>
                 )}
               </Route>

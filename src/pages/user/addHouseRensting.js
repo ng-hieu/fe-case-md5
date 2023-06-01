@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
@@ -101,7 +100,9 @@ export function AddHouseRenting() {
                               <div className="container-addHouse">
                                 <div className="form-addHouse">
                                   <div className="descr-addHouse">
-                                    <h3 style={{color:"white"}}><u>CREATE MORE HOUSE</u></h3>
+                                    <h3 style={{ color: "white" }}>
+                                      <u>CREATE MORE HOUSE</u>
+                                    </h3>
                                   </div>
                                   <div className="input-addHouse">
                                     <Field
@@ -151,11 +152,15 @@ export function AddHouseRenting() {
                                           "district",
                                           e.target.value
                                         );
-                                      }} className={'district-select'}>
+                                      }}
+                                      className={"district-select"}>
                                       <option value="">Select district</option>
                                       {district.map((item) => {
                                         return (
-                                          <option key={item.id} value={item.id} className={'district-option'}>
+                                          <option
+                                            key={item.id}
+                                            value={item.id}
+                                            className={"district-option"}>
                                             {item.name}
                                           </option>
                                         );
@@ -169,11 +174,14 @@ export function AddHouseRenting() {
                                       // onChange={(e) => {
                                       //     handleDistrictChange(e.target.value)
                                       // }}
-                                    className={'district-select'}>
+                                      className={"district-select"}>
                                       <option value="">Select wards</option>
                                       {wards.map((item) => {
                                         return (
-                                          <option key={item.id} value={item.id}className={'district-option'}>
+                                          <option
+                                            key={item.id}
+                                            value={item.id}
+                                            className={"district-option"}>
                                             {item.name}
                                           </option>
                                         );
