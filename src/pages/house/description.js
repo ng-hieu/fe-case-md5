@@ -88,16 +88,10 @@ export function Description() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <img src=""/>
-                            <div>
-                                {house.image
-                                    ? house.image.forEach((item) => {
-                                        <img
-                                            src={
-                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG5cEC5COLJtFdYgtCEd34VJ8aZE1CpDynew&usqp=CAU"
-                                            }
-                                        />;
-                                    })
+                            <div className={"col-lg-12"}>
+                                {house.image ? house.image.map((item) =>
+                                        <img src={item.imageURL}/>
+                                    )
                                     : ""}
                             </div>
                         </div>
