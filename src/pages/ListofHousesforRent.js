@@ -75,13 +75,13 @@ const submit = (id) => {
                               <button>
                                 <Link to={`/home/edit/${item.id}`}>Edit</Link>
                               </button>
-                              <button
+                              {/* <button
                                 onClick={    
                                   submit()                          
                                 }
                               >
                                 Delete
-                              </button>
+                              </button> */}
                             </div>
                           </div>
                         </div>
