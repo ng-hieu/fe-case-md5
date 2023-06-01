@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Navbar} from "../../components/Navbar/navbar";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,6 +15,7 @@ export function Description() {
     let user = useSelector(({user}) => {
         return user.currenState;
     });
+    let navigate=useNavigate()
 
     const {id} = useParams();
     const house = useSelector(({house}) => {
@@ -99,13 +100,15 @@ export function Description() {
                             <Formik
                                 initialValues={{
                                     userId:user.id,
-                                    price: house.price,
-                                    cost: cost,
                                     houseId: id,
                                     status: 3,
+                                    cost:cost
                                 }}
                                 onSubmit={(values) => {
                                     dispatch(createContract(values));
+                                    console.log(values)
+                                    navigate('/home')
+
                                 }}
                             >
                                 {({
@@ -173,8 +176,8 @@ export function Description() {
                                                                 const endDate = value[1]["$d"] ? value[1]["$d"] : "2023-06-11";
                                                                 let days = daysBetweenDates(startDate, endDate) + 1;
                                                                let  total = days * house.price ? days * house.price : 0;
-                                                                setFieldValue("startDay", startDate)
-                                                                setFieldValue("endDay", endDate)
+                                                                setFieldValue("startDay", new Date(startDate))
+                                                                setFieldValue("endDay", new Date(endDate))
                                                                 setCost(total)
                                                               setFieldValue('cost',total)
                                                               setFieldValue('price',house.price)
