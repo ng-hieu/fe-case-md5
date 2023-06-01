@@ -53,6 +53,7 @@ export function HouseList() {
               <div className="items">
                 <div className="row">
                   {sortedHouses.map((item) => (
+                    console.log(item),
                     <div className="col-lg-12">
                       <div className="item">
                         <div className="row">
@@ -68,8 +69,6 @@ export function HouseList() {
                           </div>
                           <div className="col-lg-8 col-sm-7">
                             <div className="right-content">
-                              {console.log(item)}
-
                               <h4>{item.nameHouse}</h4>
                               <span>{item.district.name}</span>
                               <p>{item.description}</p>

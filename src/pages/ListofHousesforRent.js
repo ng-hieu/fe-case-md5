@@ -5,7 +5,8 @@ import { deleteHouse, listOFHouseForRent } from "../service/houseService";
 export function ListOFHouseForRent() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
-    return houseList.house;
+    console.log(houseList)
+    return houseList.Arrayhouse;
   });
   const userId = JSON.parse(localStorage.getItem("user")).id;
 

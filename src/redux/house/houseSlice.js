@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { EditHouseById, createHouse, deleteHouse, findHouseById, getAllHouse, listOFHouseForRent } from '../../service/houseService'
 import { filterHouse,  } from "../../service/houseService";
+import { getHouseById } from '../../service/houseService'
 
 const initialState = {
     listHouse: [],
-    house: []
+    Arrayhouse: [],
+    house:{}
 }
 
 const houseSlice = createSlice({
     name:'houseList',
     reducers: {},
     initialState,
+    reducers: {
+        setSortOrder: (currentState, action) => {
+          currentState.sortOrder = action.payload;
+        },
+      },
     extraReducers: (builder) => {
         builder.addCase(getAllHouse.fulfilled, (currentState, action) => {
             currentState.listHouse = action.payload
@@ -27,7 +34,7 @@ const houseSlice = createSlice({
             state.house = action.payload
         })
         builder.addCase(listOFHouseForRent.fulfilled,(state,action) =>{
-            state.house = action.payload
+            state.Arrayhouse = action.payload
         })
 
 

@@ -10,16 +10,22 @@ export const getAllHouse = createAsyncThunk("house/getAllHouse", async () => {
 export const getHouseById = createAsyncThunk(
   "house/showHouseById",
   async (id) => {
+    console.log(id, "da vao getHousebyHouse");
     const response = await customAPI.get(`house/${id}`);
     return response.data;
   }
 );
 
+export const getWards = createAsyncThunk("house/wards", async (id) => {
+  const response = await customAPI.get(`house/wards/${id}`);
+  return response.data;
+});
 export const createHouse = createAsyncThunk(
   "house/createHouse",
   async (value) => {
-    const res = await customAPI.post("house", value);
-    return res.data;
+    console.log(value);
+    await customAPI.post("house", value);
+    return value;
   }
 );
 
@@ -28,11 +34,11 @@ export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
   console.log(abc, 22);
   return id;
 });
-export const EditHouseById = createAsyncThunk(
+export const editHouseById = createAsyncThunk(
   "house/EditHouseById",
   async (arg) => {
-    await customAPI.put(`house/${arg.id}`, arg.value);
-    return arg.value;
+    await customAPI.put(`house/${arg.id}`, arg.house);
+    return arg.values;
   }
 );
 
@@ -51,8 +57,3 @@ export const findHouseById = createAsyncThunk(
     return res.data;
   }
 );
-
-// export const filterHouse = createAsyncThunk("house/filterHouse", async () => {
-//   const res = await customAPI.get("house/search");
-//   return res.data;
-// });

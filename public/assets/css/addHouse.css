@@ -18,7 +18,7 @@
     cursor: pointer;
 }
 
-.inpdddut[type="submit"] {
+.inpdddut[type="button"] {
     padding: 10px 20px;
     background: transparent;
     color: #fff;
@@ -27,8 +27,26 @@
     cursor: pointer;
 }
 
-.inpdddut[type="submit"]:hover {
+.inpdddut[type="button"]:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-    
+
+.district-select{
+ 
+    padding: 10px 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.district-option{
+    padding: 10px 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #22b3c1;
+}
