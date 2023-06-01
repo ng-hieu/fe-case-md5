@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-// import {Link} from "react-router-dom"
-// import axios from "axios";
+
 import { getAllHouse } from "../service/houseService";
 import { Header } from "../components/Header/header";
 export function HouseList() {
@@ -9,7 +8,6 @@ export function HouseList() {
   const house = useSelector(({ houseList }) => {
     return houseList.listHouse;
   });
-  console.log("house", house);
 
   useEffect(() => {
     dispatch(getAllHouse());

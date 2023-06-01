@@ -15,13 +15,6 @@ export const getHouseById = createAsyncThunk(
   }
 );
 
-export const getWards = createAsyncThunk(
-    "house/wards",
-    async (id) => {
-        const response = await customAPI.get(`house/wards/${id}`);
-        return response.data;
-    }
-);
 
 export const createHouse = createAsyncThunk("house/createHouse", async (value) => {
     console.log(value)
@@ -33,11 +26,11 @@ export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
   await customAPI.delete(`house/${id}`);
   return id;
 });
-export const EditHouseById = createAsyncThunk(
+export const editHouseById = createAsyncThunk(
   "house/EditHouseById",
   async (arg) => {
-    await customAPI.put(`house/${arg.id}`, arg.value);
-    return arg.value;
+    await customAPI.put(`house/${arg.id}`, arg.house);
+    return arg.values;
   }
 );
 
