@@ -33,11 +33,11 @@ export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
   console.log(abc, 22);
   return id;
 });
-export const EditHouseById = createAsyncThunk(
+export const editHouseById = createAsyncThunk(
   "house/EditHouseById",
   async (arg) => {
-    await customAPI.put(`house/${arg.id}`, arg.value);
-    return arg.value;
+    await customAPI.put(`house/${arg.id}`, arg.house);
+    return arg.values;
   }
 );
 export const findHouseById = createAsyncThunk(
