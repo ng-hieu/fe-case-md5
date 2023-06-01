@@ -1,11 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { filterHouse, getAllHouse } from "../../service/houseService";
-
+import { createSlice } from '@reduxjs/toolkit'
+import { getAllHouse } from '../../service/houseService'
+import { getHouseById } from '../../service/houseService'
 const initialState = {
-  listHouse: [],
-  // filteredListHouse: []
-  sortOrder: 1,
-};
+    listHouse: [],
+    house:{}
+}
 
 const houseSlice = createSlice({
   name: "houseList",

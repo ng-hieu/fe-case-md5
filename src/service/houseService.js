@@ -9,6 +9,7 @@ export const getAllHouse = createAsyncThunk("house/getAllHouse", async () => {
 export const getHouseById = createAsyncThunk(
   "house/showHouseById",
   async (id) => {
+    console.log(id,"da vao getHousebyHouse");
     const response = await customAPI.get(`house/${id}`);
     return response.data;
   }
@@ -40,7 +41,3 @@ export const EditHouseById = createAsyncThunk(
   }
 );
 
-// export const filterHouse = createAsyncThunk("house/filterHouse", async () => {
-//   const res = await customAPI.get("house/search");
-//   return res.data;
-// });

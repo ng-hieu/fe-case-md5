@@ -9,7 +9,9 @@ export  const  login = createAsyncThunk(
 );
 export const registerUser = createAsyncThunk(
     "user/registerUser",
+   
     async (user) => {
+      console.log(user);
       const response = await customAPI.post(`register`,user);
       return response.data;
     }

@@ -1,21 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import customAPI from "./customAPI";
 
-export const getContractById = createAsyncThunk(
+export const getContract = createAsyncThunk(
   "contract/getContractById",
   async () => {
     const res = await customAPI.get("contracts");
     return res.data;
   }
 );
-export const getContracById = createAsyncThunk(
+export const getContractById = createAsyncThunk(
   "contract/getContracById",
   async (id) => {
     const res = await customAPI.get(`contract/${id}`);
     return res.data;
   }
 );
-export const createContrac = createAsyncThunk(
+export const createContract = createAsyncThunk(
   "contract/createContrac",
   async (value) => {
     const res = await customAPI.post(`contract`, value);
