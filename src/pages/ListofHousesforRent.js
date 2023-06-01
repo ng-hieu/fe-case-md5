@@ -1,11 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { deleteHouse, listOFHouseForRent } from "../service/houseService";
+import { Link, useNavigate } from "react-router-dom";
+
+import { deleteHouseByUser, listOFHouseForRent } from "../service/houseService";
+
 export function ListOFHouseForRent() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const house = useSelector(({ houseList }) => {
-    return houseList.house;
+    console.log(houseList)
+    return houseList.Arrayhouse;
   });
   const userId = JSON.parse(localStorage.getItem("user")).id;
 
@@ -13,6 +17,11 @@ export function ListOFHouseForRent() {
     dispatch(listOFHouseForRent(userId));
   }, []);
 
+const submit = (id) => {
+  dispatch(deleteHouseByUser(id)).then(() =>{
+    navigate('home/listhousforrent')
+  })
+}
   return (
     <>
       <div className="visit-country">
@@ -30,9 +39,9 @@ export function ListOFHouseForRent() {
               <div className="items">
                 <div className="row">
                   {console.log(house)}
-                  {house.map((item) => (
+                  {house.map((item,ind) => (
                     
-                    <div className="col-lg-12">
+                    <div className="col-lg-12" key={ind}>
                       <div className="item">
                         <div className="row">
                           <div className="col-lg-4 col-sm-5">
@@ -66,11 +75,13 @@ export function ListOFHouseForRent() {
                               <button>
                                 <Link to={`/home/edit/${item.id}`}>Edit</Link>
                               </button>
-                              <button
-                                onClick={() => dispatch(deleteHouse(item.id))}
+                              {/* <button
+                                onClick={    
+                                  submit()                          
+                                }
                               >
                                 Delete
-                              </button>
+                              </button> */}
                             </div>
                           </div>
                         </div>
