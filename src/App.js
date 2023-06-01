@@ -7,6 +7,7 @@ import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 import {useSelector} from "react-redux";
 import { HouseList } from "./pages/houseList";
 import { EditHouse } from "./pages/owners/editHouseReinsting";
+import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 
 function App() {
     let user = useSelector(({user}) => {
@@ -24,6 +25,8 @@ function App() {
                             <Route path={""} element={<HouseList />}></Route>
                             <Route path={"create"} element={<AddHouseRenting />}></Route>
                             <Route path = {"edit/:id"} element={<EditHouse/>}></Route>
+                            <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
+
 
                           </Route>
                           <Route path={"*"} element={<Navigate to={'home'}/>}/>

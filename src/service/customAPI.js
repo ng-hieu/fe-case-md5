@@ -6,4 +6,8 @@ const customAPI = axios.create({
         Authorization: `Bearer ${localStorage.getItem("user")?JSON.parse(localStorage.getItem("user")).token:""}`
     }
 })
-export default customAPI;
+export default customAPI
+// export const delCustomAPI = () => {
+//     localStorage.removeItem("user");
+
+// }

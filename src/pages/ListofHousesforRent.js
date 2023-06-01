@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {Link} from "react-router-dom"
-// import axios from "axios";
 import { deleteHouse, getAllHouse } from "../service/houseService";
-import { Header } from "../components/Header/header";
-import { FilterHouse } from "../components/Filter/filter";
-export function HouseList() {
+export function ListOFHouseForRent() {
   const dispatch = useDispatch();
   const house = useSelector(({ houseList }) => {
-    return houseList.listHouse;
+return houseList.listHouse;
   });
   const sortOrder = useSelector(({ houseList }) => {
     return houseList.sortOrder;
@@ -36,8 +33,6 @@ export function HouseList() {
   }, []);
   return (
     <>
-      <Header></Header>
-      <FilterHouse></FilterHouse>
       <div className="visit-country">
         <div className="container">
           <div className="row">
@@ -73,6 +68,7 @@ export function HouseList() {
                               <h4>{item.nameHouse}</h4>
                               <span>{item.district.name}</span>
                               <p>{item.description}</p>
+                              <p>{item.user && item.user.name}</p>
                               <ul className="info">
                                 <li>
                                   <i className="fa fa-user" /> 8.66 Mil People
@@ -85,6 +81,8 @@ export function HouseList() {
                                   {item.price} VND
                                 </li>
                               </ul>
+                              <button><Link to={`/home/edit/${item.id}`}>Edit</Link></button>
+                              <button onClick={() => dispatch(deleteHouse(item.id))}>Delete</button>
                             </div>
                           </div>
                         </div>
