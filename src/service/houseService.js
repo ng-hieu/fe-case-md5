@@ -40,6 +40,15 @@ export const editHouseById = createAsyncThunk(
     return arg.values;
   }
 );
+
+export const listOFHouseForRent = createAsyncThunk(
+  "house/ListOfHouseForRent",
+  async (id) => {
+    const res = await customAPI.get(`house/user/${id}`);
+    return res.data;
+  }
+);
+
 export const findHouseById = createAsyncThunk(
   "house/findHouseById",
   async (id) => {

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { EditHouseById, createHouse, deleteHouse, findHouseById, getAllHouse } from '../../service/houseService'
+import { EditHouseById, createHouse, deleteHouse, findHouseById, getAllHouse, listOFHouseForRent } from '../../service/houseService'
 import { filterHouse,  } from "../../service/houseService";
 import { getHouseById } from '../../service/houseService'
 
@@ -26,10 +26,13 @@ const houseSlice = createSlice({
         })
         builder.addCase(deleteHouse.fulfilled,(state,action) => {
             let index = state.listHouse.findIndex(item => item.id=== action.payload.id);
-            state.listHouse.splice(index, 1);
+            state.li.splice(index, 1);
         })
         builder.addCase(findHouseById.fulfilled,(state,action) =>{
             console.log(action.payload,7)
+            state.house = action.payload
+        })
+        builder.addCase(listOFHouseForRent.fulfilled,(state,action) =>{
             state.house = action.payload
         })
 
