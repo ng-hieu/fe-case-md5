@@ -41,6 +41,7 @@ export function NavbarOfUser() {
                     <Link href="reservation.html">Book Yours</Link>
                   </li>
                 </ul>
+                <li><button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">profile</button></li>
               </nav>
             </div>
             <div className="col-1">

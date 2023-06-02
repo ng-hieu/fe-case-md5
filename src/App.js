@@ -9,10 +9,10 @@ import { Description } from "./pages/house/description";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AddHouseRenting } from "./pages/user/addHouseRensting";
-import { EditHouse } from "./pages/owners/editHouseReinsting";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
-
+import {ProfilePage} from "./pages/user/showProfileUser";
+import { EditHouseRenting } from "./pages/owners/editHouseRensting";
 function App() {
   let user = useSelector(({ user }) => {
     return user.currenState;
@@ -31,8 +31,9 @@ function App() {
                     <Route path={""} element={<HouseList />}></Route>
                     <Route path={":id"} element={<Description />}></Route>
                     <Route path={"create"} element={<AddHouseRenting />}></Route>
-                    <Route path = {"edit/:id"} element={<EditHouse/>}></Route>
+                    <Route path = {"edit/:id"} element={<EditHouseRenting/>}></Route>
                     <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
+                    <Route path={"showProfile"}element = {<ProfilePage/>} ></Route>
                   </>
                 ) : (
                   <>

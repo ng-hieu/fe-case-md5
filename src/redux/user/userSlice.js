@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, registerUser } from "../../service/userService";
+import { ShowProfileUser, login, registerUser } from "../../service/userService";
 const initialState = {
   currenState: JSON.parse(localStorage.getItem("user")),
+  current : {}
 };
 const userSlice = createSlice({
   name: "user",
@@ -19,6 +20,10 @@ const userSlice = createSlice({
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.currenState = action.payload;
     });
+    builder.addCase(ShowProfileUser.fulfilled,(state,action) => {
+    console.log(action.payload,8888)
+      state.current = action.payload;
+    })
   },
 });
 export const { deleteUser } = userSlice.actions;
