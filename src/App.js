@@ -8,11 +8,12 @@ import { HouseList } from "./pages/houseList";
 import { Description } from "./pages/house/description";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
-import { AddHouseRenting } from "./pages/user/addHouseRensting";
+
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
 import {ProfilePage} from "./pages/user/showProfileUser";
 import { EditHouseRenting } from "./pages/owners/editHouseRensting";
+import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 function App() {
   let user = useSelector(({ user }) => {
     return user.currenState;

@@ -41,22 +41,32 @@ export function NavbarOfUser() {
                     <Link href="reservation.html">Book Yours</Link>
                   </li>
                 </ul>
-                <li><button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">profile</button></li>
               </nav>
             </div>
             <div className="col-1">
-              <nav className="main-nav">
+              <div class="btn-group">
                 <button
-                  id="btn-deleteLocalStorage"
-                  onClick={() => {
+                  type="button"
+                  className="btn btn-outline-light dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-expanded="false" style={{marginTop:15}}
+                >
+                  Action<i class="far fa-house-night"></i>
+                </button>
+                <div className="dropdown-menu" style={{width:"10px"}}>
+              
+              <Link to={"showProfile"} style={{marginLeft:20}}><i class="fa-solid fa-face-smile"></i> profile</Link>
+              <div className="dropdown-divider"></div>
+
+              <a class="dropdown-item" onClick={() => {
                     dispatch(deleteUser);
                     localStorage.removeItem("user");
                     navigate("/login");
-                  }}>
-                  Logout
-                </button>
-                {/* ***** Menu End *****  */}
-              </nav>
+                  }} ><i class="fas fa-walking"></i> log out</a>
+                </div>
+              </div>
+
+             
             </div>
           </div>
         </div>
