@@ -12,10 +12,10 @@ import { NavbarOfUser } from "../../components/Navbar/navbarOfUser";
 
 export function Description() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     let user = useSelector(({user}) => {
         return user.currenState;
     });
-    let navigate = useNavigate()
 
     const {id} = useParams();
     const house = useSelector(({house}) => {
@@ -23,6 +23,9 @@ export function Description() {
     });
     const [cost, setCost] = useState([]);
 
+
+    // let startDate= setStartDay(value[0])
+    // let endDate= setEndDay(value[1])
     function daysBetweenDates(startDate, endDate) {
         const oneDay = 24 * 60 * 60 * 1000; // Số milliseconds trong 1 ngày
         const start = new Date(startDate); // Tạo đối tượng Date cho ngày bắt đầu
@@ -37,7 +40,7 @@ export function Description() {
     }, []);
     return (
         <>
-           <NavbarOfUser></NavbarOfUser>
+            <NavbarOfUser></NavbarOfUser>
             <div class="second-page-heading">
                 <div class="container">
                     <div class="row">
@@ -68,16 +71,11 @@ export function Description() {
                                 <i class="fa fa-map-marker"></i>
                                 <h4>Address</h4>
                                 <h6>
-                                    {house.city ? house.city.name : ""},
-                                    {house.district ? house.district.name : ""},
+                                    {house.city ? house.city.name : ""},{house.district ? house.district.name : ""},
                                     {house.wards ? house.wards.name : ""}
                                 </h6>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -94,147 +92,147 @@ export function Description() {
                                         )
                                         : ""}
                                 </div>
+                                <div className={"col-lg-12"}>
+                                    {house.image ? house.image.map((item) =>
+                                            <img src={item.imageURL}/>
+                                        )
+                                        : ""}
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-lg-12">
-                            <Formik
-                                initialValues={{
-                                    userId: user.id,
-                                    houseId: id,
-                                    status: 3,
-                                    cost: cost
-                                }}
-                                onSubmit={(values) => {
-                                    dispatch(createContract(values));
-                                    console.log(values)
-                                    navigate('/home')
+                            <div className="col-lg-12">
+                                <Formik
+                                    initialValues={{
+                                        userId: user.id,
+                                        houseId: id,
+                                        status: 3,
+                                        cost: cost
+                                    }}
+                                    onSubmit={(values) => {
+                                        dispatch(createContract(values));
+                                        console.log(values)
+                                        navigate('/home')
+                                    }}
+                                >
+                                    {({
+                                          values,
+                                          errors,
+                                          touched,
+                                          handleChange,
+                                          handleBlur,
+                                          handleSubmit,
+                                          isSubmitting,
+                                          setFieldValue
+                                          /* and other goodies */
+                                      }) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <div className="row">
+                                                <div className="col-lg-12">
+                                                    <h4>
+                                                        Make Your <em>Reservation</em> Through This{" "}<em>Form</em>
+                                                    </h4>
+                                                </div>
+                                                {/*<div className={"col-lg-12"}>*/}
+                                                {/*    {JSON.stringify(values)}*/}
+                                                {/*</div>*/}
+                                                <div className="col-lg-6">
+                                                    <fieldset>
+                                                        <label htmlFor="Name" className="form-label">
+                                                            Your Name
+                                                        </label>
+                                                        <Field
+                                                            type="text"
+                                                            name="Name"
+                                                            className="Name input"
+                                                            value={user.username}
+                                                            autoComplete="on"
+                                                            readOnly
+                                                            required
+                                                        />
+                                                    </fieldset>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <fieldset>
+                                                        <label htmlFor="Number" className="form-label">
+                                                            Price
+                                                        </label>
+                                                        <Field
+                                                            className="input"
+                                                            value={house.price}
+                                                            type="number"
+                                                            readOnly
+                                                            required
+                                                        />
+                                                    </fieldset>
+                                                </div>
+                                                <div className="col-lg-6">
+                                                    <DateRangePicker
+                                                        defaultValue={[
+                                                            dayjs("2023-06-1"),
+                                                            dayjs("2023-06-11"),
+                                                        ]}
+                                                        onChange={(value) => {if (value) {
+                                                                if (value[1]) {
+                                                                    const startDate = value[0]["$d"] ? value[0]["$d"] : "2023-06-1";
+                                                                    const endDate = value[1]["$d"] ? value[1]["$d"] : "2023-06-11";
+                                                                    let days = daysBetweenDates(startDate, endDate) + 1;
+                                                                    let total = days * house.price ? days * house.price : 0;
+                                                                    setFieldValue("startDay", new Date(startDate))
+                                                                    setFieldValue("endDay", new Date(endDate))
+                                                                    setCost(total)
+                                                                    setFieldValue('cost', total)
+                                                                    setFieldValue('price', house.price)
 
-                                }}
-                            >
-                                {({
-                                      values,
-                                      errors,
-                                      touched,
-                                      handleChange,
-                                      handleBlur,
-                                      handleSubmit,
-                                      isSubmitting,
-                                      setFieldValue
-                                      /* and other goodies */
-                                  }) => (
-                                    <Form onSubmit={handleSubmit}>
-                                        <div className="row">
-                                            <div className="col-lg-12">
-                                                <h4>
-                                                    Make Your <em>Reservation</em> Through This{" "}
-                                                    <em>Form</em>
-                                                </h4>
-                                            </div>
-                                            {/*<div className={"col-lg-12"}>*/}
-                                            {/*    {JSON.stringify(values)}*/}
-                                            {/*</div>*/}
-                                            <div className="col-lg-6">
-                                                <fieldset>
-                                                    <label htmlFor="Name" className="form-label">
-                                                        Your Name
-                                                    </label>
-                                                    <Field
-                                                        type="text"
-                                                        name="Name"
-                                                        className="Name input"
-                                                        value={user.username}
-                                                        autoComplete="on"
-                                                        readOnly
-                                                        required
-                                                    />
-                                                </fieldset>
-                                            </div>
-                                            <div className="col-lg-6">
-                                                <fieldset>
-                                                    <label htmlFor="Number" className="form-label">
-                                                        Price
-                                                    </label>
-                                                    <Field
-                                                        className="input"
-                                                        value={house.price}
-                                                        type="number"
-                                                        readOnly
-                                                        required
-                                                    />
-                                                </fieldset>
-                                            </div>
-                                            <div className="col-lg-6">
-                                                <DateRangePicker
-                                                    defaultValue={[
-                                                        dayjs("2023-06-1"),
-                                                        dayjs("2023-06-11"),
-                                                    ]}
-                                                    onChange={(value) => {
-                                                        if (value) {
-                                                            if (value[1]) {
-                                                                const startDate = value[0]["$d"] ? value[0]["$d"] : "2023-06-1";
-                                                                const endDate = value[1]["$d"] ? value[1]["$d"] : "2023-06-11";
-                                                                let days = daysBetweenDates(startDate, endDate) + 1;
-                                                                let total = days * house.price ? days * house.price : 0;
-                                                                setFieldValue("startDay", new Date(startDate))
-                                                                setFieldValue("endDay", new Date(endDate))
-                                                                setCost(total)
-                                                                setFieldValue('cost', total)
-                                                                setFieldValue('price', house.price)
+                                                                }
 
                                                             }
 
-                                                        }
+
+                                                        }}
 
 
-                                                    }}
-
-
-                                                />
-
-                                            </div>
-
-                                            <div className="col-lg-6">
-                                                <fieldset>
-                                                    <label htmlFor="Number" className="form-label">
-                                                        Total{" "}
-                                                    </label>
-                                                    <Field
-                                                        className="input"
-                                                        value={cost}
-                                                        required
                                                     />
-                                                </fieldset>
-                                            </div>
 
-                                            <div className="col-lg-6">
-                                                <fieldset>
-                                                    <label htmlFor="Number" className="form-label"></label>
-                                                    <Field
-                                                        className="input"
-                                                        type="hidden"
-                                                        value={house.id}
-                                                        required
-                                                    />
-                                                </fieldset>
-                                            </div>
+                                                </div>
 
-                                            <div className="col-lg-12">
-                                                <fieldset>
-                                                    <button type="submit" className="main-button">
-                                                        Make Your Reservation Now
-                                                    </button>
-                                                </fieldset>
+                                                <div className="col-lg-6">
+                                                    <fieldset>
+                                                        <label htmlFor="Number" className="form-label">
+                                                            Total{" "}
+                                                        </label>
+                                                        <Field
+                                                            className="input"
+                                                            value={cost}
+                                                            required
+                                                        />
+                                                    </fieldset>
+                                                </div>
+
+                                                <div className="col-lg-6">
+                                                    <fieldset>
+                                                        <label htmlFor="Number" className="form-label"></label>
+                                                        <Field
+                                                            className="input"
+                                                            type="hidden"
+                                                            value={house.id}
+                                                            required
+                                                        />
+                                                    </fieldset></div>
+
+                                                <div className="col-lg-12">
+                                                    <fieldset>
+                                                        <button type="submit" className="main-button">
+                                                            Make Your Reservation Now
+                                                        </button>
+                                                    </fieldset>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Form>)}
-                            </Formik>
+                                        </Form>)}
+                                </Formik>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <footer></footer>
         </>
-    );
+    )
 }
