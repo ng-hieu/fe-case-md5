@@ -209,10 +209,10 @@ export function AddHouseRenting() {
                                           e.target.value
                                         );
                                       }} className={'district-select'}>
-                                      <option value="">Select district</option>
+                                      <option value="" className="district-option">Select district</option>
                                       {district.map((item) => {
                                         return (
-                                          <option key={item.id} value={item.id}>
+                                          <option key={item.id} value={item.id} className="district-option">
                                             {item.name}
                                           </option>
                                         );
@@ -227,10 +227,10 @@ export function AddHouseRenting() {
                                       //     handleDistrictChange(e.target.value)
                                       // }}
                                       className={'district-select'}>
-                                      <option value="">Select wards</option>
+                                      <option value="" className="district-option">Select wards</option>
                                       {wards.map((item) => {
                                         return (
-                                          <option key={item.id} value={item.id}>
+                                          <option key={item.id} value={item.id} className="district-option" >
                                             {item.name}
                                           </option>
                                         );

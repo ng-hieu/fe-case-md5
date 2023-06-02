@@ -92,12 +92,6 @@ export function Description() {
                                         )
                                         : ""}
                                 </div>
-                                <div className={"col-lg-12"}>
-                                    {house.image ? house.image.map((item) =>
-                                            <img src={item.imageURL}/>
-                                        )
-                                        : ""}
-                                </div>
                             </div>
                             <div className="col-lg-12">
                                 <Formik

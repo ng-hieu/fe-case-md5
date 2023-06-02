@@ -153,11 +153,11 @@ export function EditHouseRenting() {
                                                                                onChange={(e) => {
                                                                                    handleDistrictChange(e.target.value)
                                                                                    setFieldValue("district", e.target.value)
-                                                                               }}>
-                                                                            <option value=''>Chọn Quận</option>
+                                                                               }} className={'district-select'}>
+                                                                            <option value='' className="district-option">Select district</option>
                                                                             {district.map((item) => {
                                                                                 return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
+                                                                                               value={item.id} className="district-option">{item.name}
                                                                                 </option>
                                                                             })
                                                                             }
@@ -168,11 +168,11 @@ export function EditHouseRenting() {
                                                                             // onChange={(e) => {
                                                                             //     handleDistrictChange(e.target.value)
                                                                             // }}
-                                                                        >
-                                                                            <option value=''>Chọn Phường/Xã</option>
+                                                                            className={'district-select'}>
+                                                                            <option value='' className="district-option">Select wards</option>
                                                                             {wards.map((item) => {
                                                                                 return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
+                                                                                               value={item.id} className="district-option">{item.name}
                                                                                 </option>
                                                                             })
                                                                             }
