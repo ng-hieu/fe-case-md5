@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { EditHouseById, createHouse, deleteHouse, findHouseById, getAllHouse, listOFHouseForRent } from '../../service/houseService'
-import { filterHouse,  } from "../../service/houseService";
+import { findHouseById, getAllHouse } from '../../service/houseService'
 import { getHouseById } from '../../service/houseService'
+import { createHouse } from '../../service/houseService'
+import { deleteHouse } from '../../service/houseService'
+import { listOFHouseForRent } from '../../service/houseService'
 
 const initialState = {
     listHouse: [],
@@ -35,8 +37,9 @@ const houseSlice = createSlice({
         builder.addCase(listOFHouseForRent.fulfilled,(state,action) =>{
             state.Arrayhouse = action.payload
         })
-        
-
+        builder.addCase(getHouseById.fulfilled, (currentState, action) => {
+            currentState.house = action.payload
+        });
     }
 })
 
