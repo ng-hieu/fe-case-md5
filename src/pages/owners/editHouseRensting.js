@@ -1,4 +1,3 @@
-import {Navbar} from "../../components/Navbar/navbar";
 import {useEffect, useState} from "react";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {storage} from "../firebase";
@@ -8,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {editHouseById} from "../../service/houseService";
 import {useNavigate, useParams} from "react-router-dom";
 import customAPI from "../../service/customAPI";
+import { NavbarOfUser } from "../../components/Navbar/navbarOfUser";
 
 
 export function EditHouseRenting() {
@@ -72,7 +72,7 @@ export function EditHouseRenting() {
 
     return (
         <>
-            <Navbar></Navbar>
+            <NavbarOfUser></NavbarOfUser>
             <Formik
                 initialValues={house}
                 enableReinitialize={true}

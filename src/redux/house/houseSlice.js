@@ -11,7 +11,6 @@ const initialState = {
 
 const houseSlice = createSlice({
     name:'houseList',
-    reducers: {},
     initialState,
     reducers: {
         setSortOrder: (currentState, action) => {
@@ -36,7 +35,7 @@ const houseSlice = createSlice({
         builder.addCase(listOFHouseForRent.fulfilled,(state,action) =>{
             state.Arrayhouse = action.payload
         })
-
+        
 
     }
 })
