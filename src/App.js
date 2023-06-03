@@ -12,6 +12,7 @@ import { AddHouseRenting } from "./pages/user/addHouseRensting";
 import { EditHouse } from "./pages/owners/editHouseReinsting";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
+import CustomizedSwitches from "./pages/tesst";
 
 function App() {
   let user = useSelector(({ user }) => {
@@ -22,6 +23,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Routes>
           <Route path={"login"} element={<Login />} />
+          <Route path={"test"} element={<CustomizedSwitches />} />
           <Route path={"register"} element={<Register />} />
           {user ? (
             <>

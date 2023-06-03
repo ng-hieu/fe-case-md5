@@ -5,7 +5,8 @@ import { getHouseById } from '../../service/houseService'
 
 const initialState = {
     listHouse: [],
-    house:{}
+    house:{},
+    arrHouse:[]
 }
 
 const houseSlice = createSlice({
@@ -28,11 +29,13 @@ const houseSlice = createSlice({
             state.li.splice(index, 1);
         })
         builder.addCase(findHouseById.fulfilled,(state,action) =>{
-            console.log(action.payload,7)
+            state.house = action.payload
+        })
+        builder.addCase(getHouseById.fulfilled,(state,action) =>{
             state.house = action.payload
         })
         builder.addCase(listOFHouseForRent.fulfilled,(state,action) =>{
-            state.house = action.payload
+            state.listHouse = action.payload
         })
 
 

@@ -180,8 +180,6 @@ export function EditHouseRenting() {
                                                                 <div className="form-addHouse">
                                                                     <div className="descr-addHouse">
                                                                         EDIT HOUSE
-
-                                                                        {console.log("values:", values)}
                                                                     </div>
                                                                     <div className="input-addHouse">
                                                                         <Field
