@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar } from '../../components/Navbar/navbar';
-import { Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { createHouse } from '../../service/houseService';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Navbar} from '../../components/Navbar/navbar';
+import {Field, Form, Formik} from 'formik';
+import {useDispatch} from 'react-redux';
+import {createHouse} from '../../service/houseService';
+import {useNavigate} from 'react-router-dom';
 import customAPI from '../../service/customAPI';
 import {
     CircularProgress,
@@ -15,13 +15,13 @@ import {
     getDownloadURL,
     uploadBytesResumable,
 } from 'firebase/storage';
-import { storage } from '../firebase';
-import { v4 } from 'uuid';
+import {storage} from '../firebase';
+import {v4} from 'uuid';
 import PropTypes from 'prop-types';
 
 function CircularProgressWithLabel(props) {
     return (
-        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+        <Box sx={{position: 'relative', display: 'inline-flex'}}>
             <CircularProgress variant="determinate" {...props} />
             <Box
                 sx={{
@@ -54,9 +54,8 @@ CircularProgressWithLabel.propTypes = {
 };
 
 
-
 export function AddHouseRenting() {
-    const [progress,setProgress] = useState();
+    const [progress, setProgress] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [imageUrls, setImageUrls] = useState([]);
@@ -72,8 +71,7 @@ export function AddHouseRenting() {
             (snapshot) => {
                 // Observe state change events such as progress, pause, and resume
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                setProgress ((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-
+                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
 
 
             },
@@ -100,7 +98,7 @@ export function AddHouseRenting() {
 
     const submit = async (house) => {
         console.log(house, "add house")
-       await dispatch(createHouse(house))
+        await dispatch(createHouse(house))
         navigate('/home')
 
     };

@@ -13,6 +13,7 @@ import { EditHouse } from "./pages/owners/editHouseReinsting";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
 import CustomizedSwitches from "./pages/tesst";
+import {EditHouseRenting} from "./pages/owners/editHouseRensting";
 
 function App() {
   let user = useSelector(({ user }) => {
@@ -23,7 +24,6 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Routes>
           <Route path={"login"} element={<Login />} />
-          <Route path={"test"} element={<CustomizedSwitches />} />
           <Route path={"register"} element={<Register />} />
           {user ? (
             <>
@@ -33,7 +33,7 @@ function App() {
                     <Route path={""} element={<HouseList />}></Route>
                     <Route path={":id"} element={<Description />}></Route>
                     <Route path={"create"} element={<AddHouseRenting />}></Route>
-                    <Route path = {"edit/:id"} element={<EditHouse/>}></Route>
+                    <Route path = {"edit/:id"} element={<EditHouseRenting/>}></Route>
                     <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
                   </>
                 ) : (
