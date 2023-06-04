@@ -10,9 +10,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
-import { AddHouseRenting } from "./pages/owners/addHouseRensting";
+import {ProfilePage} from "./pages/user/showProfileUser";
 import { EditHouseRenting } from "./pages/owners/editHouseRensting";
-
+import { AddHouseRenting } from "./pages/owners/addHouseRensting";
 function App() {
   let user = useSelector(({ user }) => {
     return user.currenState;
@@ -33,6 +33,7 @@ function App() {
                     <Route path={"create"} element={<AddHouseRenting />}></Route>
                     <Route path = {"edit/:id"} element={<EditHouseRenting/>}></Route>
                     <Route path={"listhousforrent"} element={<ListOFHouseForRent />}></Route>
+                    <Route path={"showProfile"}element = {<ProfilePage/>} ></Route>
                   </>
                 ) : (
                   <>

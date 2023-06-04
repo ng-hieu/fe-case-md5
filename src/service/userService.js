@@ -21,4 +21,13 @@ export const registerUser = createAsyncThunk(
     const res = await customAPI.get("show-user");
     return res.data;
   });
+  export const ShowProfileUser = createAsyncThunk(
+    "user/ShowProfileUser",
+    async()=>{
+      const response = await customAPI.get("showProfile")
+        return response.data;
+    }
+  )
+
+
 
