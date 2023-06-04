@@ -55,14 +55,14 @@ export function NavbarOfUser() {
                 </button>
                 <div className="dropdown-menu" style={{width:"10px"}}>
               
-              <Link to={"showProfile"} style={{marginLeft:20}}><i class="fa-solid fa-face-smile"></i> profile</Link>
+              <Link to={"showProfile"} style={{marginLeft:20}}><i class="fa-solid fa-face-smile"></i> Profile</Link>
               <div className="dropdown-divider"></div>
 
               <a class="dropdown-item" onClick={() => {
                     dispatch(deleteUser);
                     localStorage.removeItem("user");
                     navigate("/login");
-                  }} ><i class="fas fa-walking"></i> log out</a>
+                  }} ><i class="fas fa-walking"></i> Log out</a>
                 </div>
               </div>
 
