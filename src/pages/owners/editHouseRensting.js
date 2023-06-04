@@ -19,8 +19,7 @@ import PropTypes from "prop-types";
 import CardMedia from "@mui/material/CardMedia";
 
 function CircularProgressWithLabel(props) {
-    return (
-        <Box sx={{position: "relative", display: "inline-flex"}}>
+    return (<Box sx={{position: "relative", display: "inline-flex"}}>
             <CircularProgress variant="determinate" {...props} />
             <Box
                 sx={{
@@ -37,8 +36,7 @@ function CircularProgressWithLabel(props) {
                     {`${Math.round(props.value)}%`}
                 </Typography>
             </Box>
-        </Box>
-    );
+        </Box>);
 }
 
 CircularProgressWithLabel.propTypes = {
@@ -56,13 +54,7 @@ export function EditHouseRenting() {
     const {id} = useParams()
     const [progress, setProgress] = useState();
     const [house, setHouse] = useState({
-        nameHouse: "",
-        price: "",
-        area: "",
-        description: "",
-        wards: "",
-        district: "",
-        image: []
+        nameHouse: "", price: "", area: "", description: "", wards: "", district: "", image: []
     })
     useEffect(() => {
         customAPI.get(`house/${id}`).then((res) => {
@@ -77,31 +69,22 @@ export function EditHouseRenting() {
         const imageRef = ref(storage, `images/${selectedFile.name + v4()}`);
         const uploadTask = uploadBytesResumable(imageRef, selectedFile);
 
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
+        uploadTask.on("state_changed", (snapshot) => {
 
-                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            },
-            (error) => {
-                console.log(error)
+            setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        }, (error) => {
+            console.log(error)
 
-            },
-            () => {
+        }, () => {
 
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log("File available at", downloadURL);
-                    setFieldValue("image", [...values.image, downloadURL]);
-                    setHouse({
-                        ...house,
-                        image: [...house.image, {imageURL: downloadURL}]
-                    })
-
-
-                });
-            }
-        );
-
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log("File available at", downloadURL);
+                setFieldValue("image", [...values.image, downloadURL]);
+                setHouse({
+                    ...house, image: [...house.image, {imageURL: downloadURL}]
+                })
+            });
+        });
     };
 
 
@@ -135,203 +118,179 @@ export function EditHouseRenting() {
     }, [districtId]);
 
 
-    return (
-        <>
+    return (<>
             <NavbarOfUser></NavbarOfUser>
             <Formik
                 initialValues={{
-                    ...house,
-                    image: house.image.map(item => item.imageURL)
+                    ...house, image: house.image.map(item => item.imageURL)
                 }}
                 enableReinitialize={true}
                 onSubmit={async (values, {setSubmitting}) => {
-                    await dispatch(editHouseById(
-                        {
-                            id: id,
-                            house: values
+                    await dispatch(editHouseById({
+                        id: id, house: values
 
-                        }
-                    ))
+                    }))
                     navigate('/home')
                 }}
             >
                 {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleBlur,
-                      handleSubmit,
-                      isSubmitting,
-                      setFieldValue
+                      values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, setFieldValue
                       /* and other goodies */
-                  }) => (
-                    <Form>
-                        <div className="about-main-content">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-lg-12">
-                                        <div className="content">
-                                            <center>
-                                                <div className="container-fluid">
-                                                    <div className="row">
-                                                        <div className="col-lg-4">
-                                                            <div className="container-addHouse">
-                                                                <div className="form-addHouse">
-                                                                    <div className="descr-addHouse">
-                                                                        EDIT HOUSE
+                  }) => (<Form>
+                    <div className="about-main-content">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="content">
+                                        <center>
+                                            <div className="container-fluid">
+                                                <div className="row">
+                                                    <div className="col-lg-4">
+                                                        <div className="container-addHouse">
+                                                            <div className="form-addHouse">
+                                                                <div className="descr-addHouse">
+                                                                    EDIT HOUSE
 
-                                                                        {console.log("values:", values)}
-                                                                    </div>
-                                                                    <div className="input-addHouse">
-                                                                        <Field
-                                                                            required
-                                                                            autoComplete="off"
-                                                                            type="text"
-                                                                            name="nameHouse"
-                                                                        />
-                                                                        <label htmlFor="price">Name House</label>
-                                                                    </div>
-                                                                    <div className="input-addHouse">
-                                                                        <Field
-                                                                            required
-                                                                            autoComplete="off"
-                                                                            type="text"
-                                                                            name="price"
-                                                                        />
-                                                                        <label htmlFor="price">Price</label>
-                                                                    </div>
-                                                                    <div className="input-addHouse">
-                                                                        <Field
-                                                                            required
-                                                                            autoComplete="off"
-                                                                            name="area"
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="area">Area</label>
-                                                                    </div>
-                                                                    <div className="input-addHouse">
-                                                                        <Field
-                                                                            required
-                                                                            autoComplete="off"
-                                                                            name="description"
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="description">Description</label>
-                                                                    </div>
-                                                                    <div>
-                                                                        <Field component={'select'} name={'district'}
-                                                                               onChange={(e) => {
-                                                                                   handleDistrictChange(e.target.value)
-                                                                                   setFieldValue("district", e.target.value)
-                                                                               }}>
-                                                                            <option value=''>Chọn Quận</option>
-                                                                            {district.map((item) => {
-                                                                                return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
-                                                                                </option>
-                                                                            })
-                                                                            }
-                                                                        </Field>
-                                                                    </div>
-                                                                    <div>
-                                                                        <Field component={'select'} name={'wards'}
-                                                                        >
-                                                                            <option value=''>Chọn Phường/Xã</option>
-                                                                            {wards.map((item) => {
-                                                                                return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
-                                                                                </option>
-                                                                            })
-                                                                            }
-                                                                        </Field>
-                                                                    </div>
-                                                                    <button type="submit">EDIT HOUSE →</button>
+                                                                    {console.log("values:", values)}
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-8">
-                                                            <div className={"imgContainer"}>
-                                                                {house.image ? house.image.map((item, index) =>
-                                                                        <Card sx={{maxWidth: 345}} key={index}>
-                                                                            <CardHeader
-                                                                                title={`Image ${index + 1}`}
-                                                                                action={
-                                                                                    <IconButton aria-label="settings"
-                                                                                                onClick={() => {
-                                                                                                    let images = values.image;
-                                                                                                    images.splice(index, 1);
-                                                                                                    setFieldValue("image", images);
-
-                                                                                                    house.image.splice(index, 1)
-                                                                                                    setHouse({
-                                                                                                        ...house
-                                                                                                    })
-                                                                                                }}
-                                                                                    >
-                                                                                        <MoreVertIcon/>
-                                                                                    </IconButton>
-                                                                                }
-                                                                            />
-                                                                            <CardMedia
-                                                                                component="img"
-                                                                                height="194"
-                                                                                sx={{
-                                                                                    aspectRatio: 1 / 1,
-                                                                                    padding: "10px",
-
-                                                                                }
-                                                                                }
-                                                                                image={item.imageURL}
-                                                                                alt=""
-                                                                            />
-                                                                            <CardActions disableSpacing>
-                                                                            </CardActions>
-                                                                        </Card>
-                                                                    )
-                                                                    : ""}
-                                                            </div>
-
-                                                            <div className="addimg-container">
-                                                                {selectedFile && (
-                                                                    <img
-                                                                        src={URL.createObjectURL(selectedFile)}
-                                                                        alt="Preview"
+                                                                <div className="input-addHouse">
+                                                                    <Field
+                                                                        required
+                                                                        autoComplete="off"
+                                                                        type="text"
+                                                                        name="nameHouse"
                                                                     />
-                                                                )}
+                                                                    <label htmlFor="price">Name House</label>
+                                                                </div>
+                                                                <div className="input-addHouse">
+                                                                    <Field
+                                                                        required
+                                                                        autoComplete="off"
+                                                                        type="text"
+                                                                        name="price"
+                                                                    />
+                                                                    <label htmlFor="price">Price</label>
+                                                                </div>
+                                                                <div className="input-addHouse">
+                                                                    <Field
+                                                                        required
+                                                                        autoComplete="off"
+                                                                        name="area"
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="area">Area</label>
+                                                                </div>
+                                                                <div className="input-addHouse">
+                                                                    <Field
+                                                                        required
+                                                                        autoComplete="off"
+                                                                        name="description"
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="description">Description</label>
+                                                                </div>
                                                                 <div>
-                                                                    <CircularProgressWithLabel
-                                                                        value={progress ? progress : ""}
-                                                                    />
+                                                                    <Field component={'select'} name={'district'}
+                                                                           onChange={(e) => {
+                                                                               handleDistrictChange(e.target.value)
+                                                                               setFieldValue("district", e.target.value)
+                                                                           }}>
+                                                                        <option value=''>Chọn Quận</option>
+                                                                        {district.map((item) => {
+                                                                            return <option key={item.id}
+                                                                                           value={item.id}>{item.name}
+                                                                            </option>
+                                                                        })}
+                                                                    </Field>
                                                                 </div>
-                                                                <label htmlFor="arquivo">Upload Image:</label>
-                                                                <input
-                                                                    type="file"
-                                                                    className="inpdddut"
-                                                                    onChange={handleFileChange}
-                                                                />
-                                                                <button
-                                                                    type="button"
-                                                                    onClick={() => {
-                                                                        uploadFile(setFieldValue, values)
-                                                                    }}
-                                                                    className="inpdddut"
-                                                                >
-                                                                    Upload Image
-                                                                </button>
+                                                                <div>
+                                                                    <Field component={'select'} name={'wards'}
+                                                                    >
+                                                                        <option value=''>Chọn Phường/Xã</option>
+                                                                        {wards.map((item) => {
+                                                                            return <option key={item.id}
+                                                                                           value={item.id}>{item.name}
+                                                                            </option>
+                                                                        })}
+                                                                    </Field>
+                                                                </div>
+                                                                <button type="submit">EDIT HOUSE →</button>
                                                             </div>
                                                         </div>
-
                                                     </div>
+                                                    <div className="col-lg-8">
+                                                        <div className={"imgContainer"}>
+                                                            {house.image ? house.image.map((item, index) => <Card
+                                                                sx={{maxWidth: 345}} key={index}>
+                                                                <CardHeader
+                                                                    title={`Image ${index + 1}`}
+                                                                    action={<IconButton aria-label="settings"
+                                                                                        onClick={() => {
+                                                                                            let images = values.image;
+                                                                                            images.splice(index, 1);
+                                                                                            setFieldValue("image", images);
+
+                                                                                            house.image.splice(index, 1)
+                                                                                            setHouse({
+                                                                                                ...house
+                                                                                            })
+                                                                                        }}
+                                                                    >
+                                                                        <MoreVertIcon/>
+                                                                    </IconButton>}
+                                                                />
+                                                                <CardMedia
+                                                                    component="img"
+                                                                    height="194"
+                                                                    sx={{
+                                                                        aspectRatio: 1 / 1, padding: "10px",
+
+                                                                    }}
+                                                                    image={item.imageURL}
+                                                                    alt=""
+                                                                />
+                                                                <CardActions disableSpacing>
+                                                                </CardActions>
+                                                            </Card>) : ""}
+                                                        </div>
+
+                                                        <div className="addimg-container">
+                                                            {selectedFile && (<img
+                                                                    src={URL.createObjectURL(selectedFile)}
+                                                                    alt="Preview"
+                                                                />)}
+                                                            <div>
+                                                                <CircularProgressWithLabel
+                                                                    value={progress ? progress : ""}
+                                                                />
+                                                            </div>
+                                                            <label htmlFor="arquivo">Upload Image:</label>
+                                                            <input
+                                                                type="file"
+                                                                className="inpdddut"
+                                                                onChange={handleFileChange}
+                                                            />
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    uploadFile(setFieldValue, values)
+                                                                }}
+                                                                className="inpdddut"
+                                                            >
+                                                                Upload Image
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </center>
-                                        </div>
+                                            </div>
+                                        </center>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </Form>)}
+                    </div>
+                </Form>)}
             </Formik>
-        </>
-    );
+        </>);
 }
