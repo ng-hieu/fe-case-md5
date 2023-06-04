@@ -30,9 +30,16 @@ export const createHouse = createAsyncThunk(
 );
 
 export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
+    console.log(id,"day la id been service")
   let abc = await customAPI.delete(`/house/${id}`);
-  console.log(abc, 22);
+  console.log(abc,"day la abc");
   return id;
+});
+export const openHouse = createAsyncThunk("house/deleteHouse", async (id) => {
+    console.log(id,"day la id been service")
+    let abc = await customAPI.patch(`/house/${id}`);
+    console.log(abc,"day la abc");
+    return id;
 });
 export const editHouseById = createAsyncThunk(
   "house/EditHouseById",

@@ -10,6 +10,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { ListOFHouseForRent } from "./pages/ListofHousesforRent";
 import { UserManager } from "./pages/admin/userManagement";
+import CustomizedSwitches from "./pages/tesst";
+
 import {ProfilePage} from "./pages/user/showProfileUser";
 import { EditHouseRenting } from "./pages/owners/editHouseRensting";
 import { AddHouseRenting } from "./pages/owners/addHouseRensting";
@@ -22,6 +24,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Routes>
           <Route path={"login"} element={<Login />} />
+          <Route path={"test"} element={<CustomizedSwitches />} />
           <Route path={"register"} element={<Register />} />
           {user ? (
             <>
