@@ -8,6 +8,5 @@ export const store = configureStore({
     houseList: houseReducer,
     user: userReducer,
     house: houseReducer,
-
   },
 });

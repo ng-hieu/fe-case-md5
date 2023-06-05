@@ -28,6 +28,7 @@ export const createHouse = createAsyncThunk(
     return value;
   }
 );
+
 export const deleteHouse = createAsyncThunk("house/deleteHouse", async (id) => {
     console.log(id,"day la id been service")
   let abc = await customAPI.delete(`/house/${id}`);
@@ -60,6 +61,13 @@ export const findHouseById = createAsyncThunk(
   "house/findHouseById",
   async (id) => {
     const res = await customAPI.get(`/house/${id}`);
+    return res.data;
+  }
+);
+export const deleteHouseByUser = createAsyncThunk(
+  "house/deleteHouseByUser",
+  async (id) => {
+    const res = await customAPI.delete(`/house/${id}`);
     return res.data;
   }
 );

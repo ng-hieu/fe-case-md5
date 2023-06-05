@@ -63,7 +63,7 @@ export function HouseList() {
                             <Link to={`/home/${item.id}`}>
                                 <img
                                     src={(item.image[0])?item.image[0].imageURL:''}
-                                    alt=""
+                                    alt="Image" className="sizeImg-house"
                                 />
                               </Link>
                             </div>

@@ -7,7 +7,6 @@ export function Home() {
   let user = useSelector(({ user }) => {
     return user.currenState;
   });
-  console.log(user.role);
   return (
     <>
       {user.role === 1 ? <NavbarOfAdmin></NavbarOfAdmin> : <NavbarOfUser></NavbarOfUser>}

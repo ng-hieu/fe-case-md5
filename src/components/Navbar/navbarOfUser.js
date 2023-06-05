@@ -35,7 +35,7 @@ export function NavbarOfUser() {
                     <Link to={"/home/create"}>Add House</Link>
                   </li>
                   <li>
-                    <Link href="deals.html">Deals</Link>
+                    <Link to={"/home/listhousforrent"}>Deals</Link>
                   </li>
                   <li>
                     <Link href="reservation.html">Book Yours</Link>
@@ -44,18 +44,29 @@ export function NavbarOfUser() {
               </nav>
             </div>
             <div className="col-1">
-              <nav className="main-nav">
+              <div class="btn-group">
                 <button
-                  id="btn-deleteLocalStorage"
-                  onClick={() => {
+                  type="button"
+                  className="btn btn-outline-light dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-expanded="false" style={{marginTop:15}}
+                >
+                  Action<i class="far fa-house-night"></i>
+                </button>
+                <div className="dropdown-menu" style={{width:"10px"}}>
+              
+              <Link to={"showProfile"} style={{marginLeft:20}}><i class="fa-solid fa-face-smile"></i> profile</Link>
+              <div className="dropdown-divider"></div>
+
+              <a class="dropdown-item" onClick={() => {
                     dispatch(deleteUser);
                     localStorage.removeItem("user");
                     navigate("/login");
-                  }}>
-                  Logout
-                </button>
-                {/* ***** Menu End *****  */}
-              </nav>
+                  }} ><i class="fas fa-walking"></i> log out</a>
+                </div>
+              </div>
+
+             
             </div>
           </div>
         </div>

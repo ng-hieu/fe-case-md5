@@ -8,20 +8,20 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import {styled} from "@mui/material/styles";
-
 export function ListOFHouseForRent() {
     const dispatch = useDispatch();
     const house = useSelector(({houseList}) => {
-
         return houseList.listHouse;
     });
     const userId = JSON.parse(localStorage.getItem("user")).id;
-    const [status, setStatus] = useState(); // d
-    if (house.houseStatus){
-        if (house.houseStatus["id"]===3){
-            setStatus(3)
-        }else {
-            setStatus(4)
+    const [status, setStatus] = useState();
+    if (house){
+        if (house.houseStatus){
+            if (house.houseStatus["id"]===3){
+                setStatus(3)
+            }else {
+                setStatus(4)
+            }
         }
 
     }
@@ -67,12 +67,10 @@ export function ListOFHouseForRent() {
             boxSizing: 'border-box',
         },
     }));
-
-
     useEffect(() => {
+        console.log(userId,"day la duoi dispatch")
         dispatch(listOFHouseForRent(userId));
     }, []);
-
     return (
         <>
             <div className="visit-country">
@@ -112,13 +110,13 @@ export function ListOFHouseForRent() {
                                                             >
                                                                 <Typography>Close</Typography>
                                                                 <Switch
-                                                                    checked={item.houseStatus.id === 3} // "open" if houseStatus = 3, otherwise "close"
+                                                                    checked={item.houseStatus["id"] === 3} // "open" if houseStatus = 3, otherwise "close"
                                                                     onChange={() => {
                                                                         const newStatus =
-                                                                            item.houseStatus.id === 3 ? 4 : 3;
+                                                                            item.houseStatus["id"] === 3 ? 4 : 3;
                                                                         if (newStatus===3){
                                                                             setStatus(4)
-                                                                            dispatch(openHouse(+item.id));
+                                                                            dispatch(openHouse(+item["id"]));
 
                                                                         }
                                                                         else {
@@ -134,7 +132,6 @@ export function ListOFHouseForRent() {
                                                         </FormGroup>
                                                         <div className="right-content">
                                                             <h4>{item.nameHouse}</h4>
-                                                            {/* <span>{item.district.name}</span> */}
                                                             <p>{item.description}</p>
                                                             <p>{item.user && item.user.name}</p>
                                                             <ul className="info">
@@ -153,7 +150,6 @@ export function ListOFHouseForRent() {
                                                                 <Link to={`/home/edit/${item.id}`}>Edit</Link>
                                                             </button>
                                                             <button
-                                                                // onClick={() => dispatch(deleteHouse(item.id))}
                                                             >
                                                                 Delete
                                                             </button>

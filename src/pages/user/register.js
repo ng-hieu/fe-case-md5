@@ -1,8 +1,9 @@
-// import {NavbarBfLogin} from "../../components/Navbar/navbarBfLogin";
+
 import {Link, useNavigate} from "react-router-dom";
 import {registerUser} from "../../service/userService";
 import {useDispatch} from "react-redux";
 import {Field, Form, Formik} from "formik";
+import { NavbarOfUser } from "../../components/Navbar/navbarOfUser";
 
 export function Register() {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export function Register() {
 
     return (
         <>
-            {/* <NavbarBfLogin></NavbarBfLogin> */}
+            <NavbarOfUser></NavbarOfUser>
             <Formik
                 initialValues={{
                     name: "",
@@ -18,11 +19,12 @@ export function Register() {
                     username: "",
                     password: "",
                     address: "",
-                    roleId:"2"
+                    role:"2"
                 }}
                 onSubmit={(user) => {
-                    dispatch(registerUser(user));
-                    navigate('/home')
+                    dispatch(registerUser(user)).then(() =>{
+                            navigate('/login')
+                    })        
                 }}
             >
                 <Form>

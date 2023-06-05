@@ -1,27 +1,25 @@
-import React, {useState, useEffect} from 'react';
-import {Navbar} from '../../components/Navbar/navbar';
-import {Field, Form, Formik} from 'formik';
-import {useDispatch} from 'react-redux';
-import {createHouse} from '../../service/houseService';
-import {useNavigate} from 'react-router-dom';
-import customAPI from '../../service/customAPI';
-import {
-    CircularProgress,
-    Typography,
-    Box,
-} from '@mui/material';
-import {
-    ref,
-    getDownloadURL,
-    uploadBytesResumable,
-} from 'firebase/storage';
-import {storage} from '../firebase';
-import {v4} from 'uuid';
-import PropTypes from 'prop-types';
+import React, {useState, useEffect} from "react";
+import {Field, Form, Formik} from "formik";
+import {useDispatch} from "react-redux";
+import {createHouse} from "../../service/houseService";
+import {useNavigate} from "react-router-dom";
+import customAPI from "../../service/customAPI";
+import {CircularProgress, Typography, Box} from "@mui/material";
+import {ref, getDownloadURL, uploadBytesResumable} from "firebase/storage";
+import {storage} from "../firebase";
+import {v4} from "uuid";
+import PropTypes from "prop-types";
+import {NavbarOfUser} from "../../components/Navbar/navbarOfUser";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
 
 function CircularProgressWithLabel(props) {
     return (
-        <Box sx={{position: 'relative', display: 'inline-flex'}}>
+        <Box sx={{position: "relative", display: "inline-flex"}}>
             <CircularProgress variant="determinate" {...props} />
             <Box
                 sx={{
@@ -29,18 +27,16 @@ function CircularProgressWithLabel(props) {
                     left: 0,
                     bottom: 0,
                     right: 0,
-                    position: 'absolute',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
+                    position: "absolute",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}>
                 <Typography variant="caption" component="div" color="text.secondary">
                     {`${Math.round(props.value)}%`}
                 </Typography>
             </Box>
         </Box>
-
     );
 }
 
@@ -53,11 +49,10 @@ CircularProgressWithLabel.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-
 export function AddHouseRenting() {
     const [progress, setProgress] = useState();
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [imageUrls, setImageUrls] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -66,65 +61,54 @@ export function AddHouseRenting() {
         const imageRef = ref(storage, `images/${selectedFile.name + v4()}`);
         const uploadTask = uploadBytesResumable(imageRef, selectedFile);
 
-
-        uploadTask.on('state_changed',
+        uploadTask.on(
+            "state_changed",
             (snapshot) => {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-
-
+                setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
             },
             (error) => {
-                // Handle unsuccessful uploads
+                console.log(error)
             },
             () => {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
+                    console.log("File available at", downloadURL);
                     setFieldValue("image", [...imageUrls, downloadURL]);
                     setImageUrls((prev) => [...prev, downloadURL]);
                 });
             }
         );
-
-        // await uploadBytes(imageRef, selectedFile);
-        // const url = await getDownloadURL(imageRef);
-        // setFieldValue("image", [...imageUrls, url]);
-        // setImageUrls((prev) => [...prev, url]);
-
     };
 
     const submit = async (house) => {
-        console.log(house, "add house")
-        await dispatch(createHouse(house))
-        navigate('/home')
-
+        console.log(house, "add house");
+        await dispatch(createHouse(house));
+        navigate("/home");
     };
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
 
-    const [district, setDistrict] = useState([])
-    const [districtId, setDistrictId] = useState('');
+    const [district, setDistrict] = useState([]);
+    const [districtId, setDistrictId] = useState("");
     useEffect(() => {
-        customAPI.get(`district`)
+        customAPI
+            .get(`district`)
             .then((response) => {
-                setDistrict(response.data)
+                setDistrict(response.data);
             })
-            .catch(e => {
-                console.log(e)
-            })
-    }, [])
+            .catch((e) => {
+                console.log(e);
+            });
+    }, []);
     const handleDistrictChange = (id) => {
-        console.log(id)
+        console.log(id);
         setDistrictId(id);
-    }
-    const [wards, setWards] = useState([])
+    };
+    const [wards, setWards] = useState([]);
     useEffect(() => {
-        customAPI.get(`wards/${districtId}`)
+        customAPI
+            .get(`wards/${districtId}`)
             .then((response) => {
                 setWards(response.data);
             })
@@ -135,7 +119,7 @@ export function AddHouseRenting() {
 
     return (
         <>
-            <Navbar></Navbar>
+            <NavbarOfUser></NavbarOfUser>
             <Formik
                 initialValues={{
                     nameHouse: "",
@@ -144,9 +128,8 @@ export function AddHouseRenting() {
                     description: "",
                 }}
                 onSubmit={(values, {setSubmitting}) => {
-                    submit(values)
-                }}
-            >
+                    submit(values);
+                }}>
                 {({
                       values,
                       errors,
@@ -155,7 +138,7 @@ export function AddHouseRenting() {
                       handleBlur,
                       handleSubmit,
                       isSubmitting,
-                      setFieldValue
+                      setFieldValue,
                       /* and other goodies */
                   }) => (
                     <Form>
@@ -208,44 +191,95 @@ export function AddHouseRenting() {
                                                                             name="description"
                                                                             type="text"
                                                                         />
-                                                                        <label htmlFor="description">Description</label>
+                                                                        <label htmlFor="description">
+                                                                            Description
+                                                                        </label>
                                                                     </div>
                                                                     <div>
-                                                                        <Field component={'select'} name={'district'}
-                                                                               onChange={(e) => {
-                                                                                   handleDistrictChange(e.target.value)
-                                                                                   setFieldValue("district", e.target.value)
-                                                                               }}>
-                                                                            <option value=''>Chọn Quận</option>
+                                                                        <Field
+                                                                            component={"select"}
+                                                                            name={"district"}
+                                                                            onChange={(e) => {
+                                                                                handleDistrictChange(e.target.value);
+                                                                                setFieldValue(
+                                                                                    "district",
+                                                                                    e.target.value
+                                                                                );
+                                                                            }} className={'district-select'}>
+                                                                            <option value=""
+                                                                                    className="district-option">Select
+                                                                                district
+                                                                            </option>
                                                                             {district.map((item) => {
-                                                                                return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
-                                                                                </option>
-                                                                            })
-                                                                            }
+                                                                                return (
+                                                                                    <option key={item.id}
+                                                                                            value={item.id}
+                                                                                            className="district-option">
+                                                                                        {item.name}
+                                                                                    </option>
+                                                                                );
+                                                                            })}
                                                                         </Field>
                                                                     </div>
                                                                     <div>
-                                                                        <Field component={'select'} name={'wards'}
+                                                                        <Field
+                                                                            component={"select"}
+                                                                            name={"wards"}
                                                                             // onChange={(e) => {
                                                                             //     handleDistrictChange(e.target.value)
                                                                             // }}
-                                                                        >
-                                                                            <option value=''>Chọn Phường/Xã</option>
+                                                                            className={'district-select'}>
+                                                                            <option value=""
+                                                                                    className="district-option">Select
+                                                                                wards
+                                                                            </option>
                                                                             {wards.map((item) => {
-                                                                                return <option key={item.id}
-                                                                                               value={item.id}>{item.name}
-                                                                                </option>
-                                                                            })
-                                                                            }
+                                                                                return (
+                                                                                    <option key={item.id}
+                                                                                            value={item.id}
+                                                                                            className="district-option">
+                                                                                        {item.name}
+                                                                                    </option>
+                                                                                );
+                                                                            })}
                                                                         </Field>
                                                                     </div>
                                                                     <button type="submit">ADD HOUSE →</button>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div className="col-lg-8">
+                                                            <div className={"imgContainer"}>
+                                                                <>danh sách ảnh hiển thị ở đây</>
+                                                                {imageUrls.map((item, index) => (
+                                                                    <Card sx={{ maxWidth: 345 }} key={index}>
+                                                                        <CardHeader
+                                                                            title={`Image ${index + 1}`}
+                                                                            action={
+                                                                                <IconButton aria-label="settings" onClick={() => {
+                                                                                    let images = [...imageUrls];
+                                                                                    images.splice(index, 1);
+                                                                                    setImageUrls(images);
+                                                                                }}>
+                                                                                    <MoreVertIcon />
+                                                                                </IconButton>
+                                                                            }
+                                                                        />
+                                                                        <CardMedia
+                                                                            component="img"
+                                                                            height="194"
+                                                                            sx={{
+                                                                                aspectRatio: 1 / 1,
+                                                                                padding: "10px",
+                                                                            }}
+                                                                            image={item}
+                                                                            alt=""
+                                                                        />
+                                                                        <CardActions disableSpacing></CardActions>
+                                                                    </Card>
+                                                                ))}
+                                                            </div>
+
                                                             <div className="addimg-container">
                                                                 {selectedFile && (
                                                                     <img
@@ -253,6 +287,11 @@ export function AddHouseRenting() {
                                                                         alt="Preview"
                                                                     />
                                                                 )}
+                                                                <div>
+                                                                    <CircularProgressWithLabel
+                                                                        value={progress ? progress : ""}
+                                                                    />
+                                                                </div>
                                                                 <label htmlFor="arquivo">Upload Image:</label>
                                                                 <input
                                                                     type="file"
@@ -262,10 +301,9 @@ export function AddHouseRenting() {
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => {
-                                                                        uploadFile(setFieldValue)
+                                                                        uploadFile(setFieldValue);
                                                                     }}
-                                                                    className="inpdddut"
-                                                                >
+                                                                    className="inpdddut">
                                                                     Upload Image
                                                                 </button>
                                                             </div>
@@ -278,7 +316,8 @@ export function AddHouseRenting() {
                                 </div>
                             </div>
                         </div>
-                    </Form>)}
+                    </Form>
+                )}
             </Formik>
         </>
     );

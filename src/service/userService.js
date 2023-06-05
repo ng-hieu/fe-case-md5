@@ -11,10 +11,23 @@ export const registerUser = createAsyncThunk(
     "user/registerUser",
    
     async (user) => {
-      console.log(user);
       const response = await customAPI.post(`register`,user);
       return response.data;
     }
   );
+  export const showAllUsers = createAsyncThunk(
+    "user/showAllUsers", 
+    async () => {
+    const res = await customAPI.get("show-user");
+    return res.data;
+  });
+  export const ShowProfileUser = createAsyncThunk(
+    "user/ShowProfileUser",
+    async()=>{
+      const response = await customAPI.get("showProfile")
+        return response.data;
+    }
+  )
+
 
 
