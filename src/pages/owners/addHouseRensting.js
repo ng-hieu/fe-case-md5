@@ -250,7 +250,6 @@ export function AddHouseRenting() {
                                                         </div>
                                                         <div className="col-lg-8">
                                                             <div className={"imgContainer"}>
-                                                                <>danh sách ảnh hiển thị ở đây</>
                                                                 {imageUrls.map((item, index) => (
                                                                     <Card sx={{ maxWidth: 345 }} key={index}>
                                                                         <CardHeader

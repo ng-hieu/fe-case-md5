@@ -121,8 +121,8 @@ export function Description() {
                                         <Form onSubmit={handleSubmit}>
                                             <div className="row">
                                                 <div className="col-lg-12">
-                                                    <h4>
-                                                        Make Your <em>Reservation</em> Through This{" "}<em>Form</em>
+                                                    <h4 style={{color: "white"}}>
+                                                        Make Your Reservation Through This Form
                                                     </h4>
                                                 </div>
                                                 {/*<div className={"col-lg-12"}>*/}

@@ -10,7 +10,6 @@ const initialState = {
     house:{},
     arrHouse:[]
 }
-
 const houseSlice = createSlice({
     name:'houseList',
     initialState,
